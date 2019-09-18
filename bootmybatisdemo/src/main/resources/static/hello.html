@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function loadsomething(){
+            	 //alert(111);
+             $.ajax({
+                 "url":"/etltypecon/queryetltypeconpage",
+                 "data":"",
+                 "type":"GET",
+                 "dataType":"json",
+                 "success":function (obj) {
+                     alert("succeess!");
+                 },
+                 "error":function (obj) {
+                     alert("error!");
+                 }
+             })
+             /*$.ajax({
+                alert(111);
+                url:"localhost:8090/srcsys/querysrcsys",//设置ajax的地址
+                type:"post",//设置ajax的传送方法
+                async:true,
+                success:function (obj) {
+                    alert("success");
+                }
+            }); */
+        }
+
+    </script>
+</head>
+<body>
+
+<h2>AJAX</h2>
+<button type="button" onclick="loadsomething()">请求</button>
+<div id="myDiv"></div>
+</body>
+</html>

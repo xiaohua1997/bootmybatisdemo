@@ -1,0 +1,54 @@
+package com.moumou.bootmybatisdemo.dataAlignment.model;
+
+public class EtlColumnConvert {
+	private String srcColumn;
+	private String tgtColumn;
+	private String tableName;
+	private String sys;
+	
+	public EtlColumnConvert(String srcColumn, String tgtColumn, String tableName, String sys) {
+		super();
+		this.srcColumn = srcColumn;
+		this.tgtColumn = tgtColumn;
+		this.tableName = tableName;
+		this.sys = sys;
+	}
+
+	public String getSrcColumn() {
+		return srcColumn;
+	}
+
+	public void setSrcColumn(String srcColumn) {
+		this.srcColumn = srcColumn;
+	}
+
+	public String getTgtColumn() {
+		return tgtColumn;
+	}
+
+	public void setTgtColumn(String tgtColumn) {
+		this.tgtColumn = tgtColumn;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getSys() {
+		return sys;
+	}
+
+	public void setSys(String sys) {
+		this.sys = sys;
+	}
+
+	@Override
+	public String toString() {
+		return "EtlColumnConvert [srcColumn=" + srcColumn + ", tgtColumn=" + tgtColumn + ", tableName=" + tableName
+				+ ", sys=" + sys + "]";
+	}
+}

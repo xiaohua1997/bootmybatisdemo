@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+
+                $.ajax({url:"../srcsys/querysrcsys",type:"POST",success:function(result){
+                    //将字符串转成对象，已经是对象所以不用再转
+                        // var jsonarray= $.parseJSON(result);
+                        // alert(result);
+                        // $.each(jsonarray, function (i, n) {
+                        $.each(result, function (i, n) {
+                            $(function(){
+                                var html = '';
+                                // alert(n.sys);
+                                html = html + '<tr>';
+                                html = html + '<td>' + n.sys           + '</td>';
+                                html = html + '<td>' + n.sys_num       + '</td>';
+                                html = html + '<td>' + n.db_type       + '</td>';
+                                html = html + '<td>' + n.db_version    + '</td>';
+                                html = html + '<td>' + n.db_sid        + '</td>';
+                                html = html + '<td>' + n.db_schema     + '</td>';
+                                html = html + '<td>' + n.db_charset    + '</td>';
+                                html = html + '<td>' + n.db_ip         + '</td>';
+                                html = html + '<td>' + n.db_port       + '</td>';
+                                html = html + '<td>' + n.username      + '</td>';
+                                html = html + '<td>' + n.password      + '</td>';
+                                html = html + '<td>' + n.encrpassword  + '</td>';
+                                html = html + '<td>' + n.remark        + '</td>';
+                                html = html + '</tr>';
+                                $('#tr').append(html);
+                            });
+                        });
+                }});
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="div1"><h2>1</h2></div>
+<button>获取</button>
+<div id="show"></div>
+<table class="table" id="tr" style="text-align: center;">
+
+</table>
+
+</body>
+</html>
