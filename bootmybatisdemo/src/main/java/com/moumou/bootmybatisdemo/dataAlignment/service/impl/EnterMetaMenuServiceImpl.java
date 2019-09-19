@@ -12,9 +12,9 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.MetadataManagemen
 public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 	
 	private MetadataManagement aMetadataManagement;
-	
+
 	@Override
-	public String updateAllSystem() {
+	public String synAllSystem() {
 		try {
 			aMetadataManagement.updateFromSourceDB();
 			return "成功";
@@ -25,21 +25,30 @@ public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 	}
 
 	@Override
-	public String updateSystem(String sys) {
-		// TODO Auto-generated method stub
-		return null;
+	public String synSystem(String sys) {
+		try {
+			aMetadataManagement.updateFromSourceDB(sys);
+			return "成功";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "失败";
+		}
 	}
 
 	@Override
-	public String updateSchema(String sys, String sid, String schema) {
-		// TODO Auto-generated method stub
-		return null;
+	public String synSchema(String sys, String sid, String schema) {
+		try {
+			aMetadataManagement.updateFromSourceDB(sys, sid, schema);
+			return "成功";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "失败";
+		}
 	}
 
 	@Override
-	public String updateTable() {
-		// TODO Auto-generated method stub
+	public String synTable(String sys, String sid, String schema, String tableInfo) {
+		
 		return null;
 	}
-	
 }

@@ -1,11 +1,11 @@
 package com.moumou.bootmybatisdemo.dataAlignment.service;
 
 public interface EnterMetaMenuService {
-	String updateAllSystem();
+	String synAllSystem();
 	
-	String updateSystem(String sys);
+	String synSystem(String sys);
 	
-	String updateSchema(String sys, String sid, String schema);
+	String synSchema(String sys, String sid, String schema);
 	
-	String updateTable();
+	String synTable(String sys, String sid, String schema, String tableInfo);
 }

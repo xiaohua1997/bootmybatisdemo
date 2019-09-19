@@ -26,5 +26,7 @@ public interface SrcSystemMapper {
     @Insert("insert into src_system(sys, sys_num, db_type, db_version, db_sid, db_schema, db_charset, db_ip,  db_port,  username,  password, encrpassword, remark) \n" +
             "values(#{sys},#{sysNum},#{dbType},#{dbVersion},#{dbSid},#{dbSchema},#{dbCharset},#{dbIp},#{dbPort},#{username},#{password},#{encrpassword},#{remark})")
     int addSrcSys(SrcSystem srcSystem);
-
+    //根据sys查询
+    @Select("select * from src_system where sys = #{sys}")
+    SrcSystem queryBySys(String sys);
 }
