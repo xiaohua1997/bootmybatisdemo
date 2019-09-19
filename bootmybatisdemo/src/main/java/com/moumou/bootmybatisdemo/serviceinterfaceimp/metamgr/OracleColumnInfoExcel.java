@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 import com.moumou.bootmybatisdemo.dataAlignment.model.TableInfo;
 
@@ -27,7 +27,7 @@ public class OracleColumnInfoExcel {
 
     static {
         String sqlString = "SELECT keyword FROM src_column,etl_keyword where src_column.column_name = etl_keyword.keyword GROUP BY keyword";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -75,7 +75,7 @@ public class OracleColumnInfoExcel {
         }else{
             sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
         }
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         OracleColumnInfoExcel srcdbToTgtdb = new OracleColumnInfoExcel();
@@ -106,7 +106,7 @@ public class OracleColumnInfoExcel {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
 
         String sqlString = "SELECT * from src_tablename_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         OracleColumnInfoExcel srcdbToTgtdb = new OracleColumnInfoExcel();
@@ -139,7 +139,7 @@ public class OracleColumnInfoExcel {
         HashMap<String, String> columnConvert = new HashMap<String, String>();
 
         String sqlString = "SELECT * from etl_column_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         OracleColumnInfoExcel srcdbToTgtdb = new OracleColumnInfoExcel();
@@ -172,7 +172,7 @@ public class OracleColumnInfoExcel {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
         //查找语句
         String sqlString = "SELECT * from src_tabschema_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -366,7 +366,7 @@ public class OracleColumnInfoExcel {
         HashMap<String, List<SourceField>> StringAndListSourceFieldMap = new HashMap<String, List<SourceField>>();
         ResultSet resultSet = null;
         ResultSet resultSet1 = null;
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
 
         try {

@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.dao;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

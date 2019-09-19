@@ -1,8 +1,8 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
-import com.moumou.bootmybatisdemo.dataAlignment.common.StringExtension;
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceTableDao;
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.common.StringExtension;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceTableDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceTable;
 import com.moumou.bootmybatisdemo.dataAlignment.model.TableInfo;
@@ -39,7 +39,7 @@ public class SrcdbToTgtdb {
 
     static {
         String sqlString = "SELECT lower(keyword) as keyword FROM src_column,etl_keyword where lower(src_column.column_name) = lower(etl_keyword.keyword) GROUP BY lower(keyword)";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -101,7 +101,7 @@ public class SrcdbToTgtdb {
     	"(SELECT sys, db_schema,db_sid from src_column GROUP BY sys,db_schema,db_sid ) t1 "+
          " inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
     	
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         //SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
@@ -141,7 +141,7 @@ public class SrcdbToTgtdb {
    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t2.db_type from "+ 
    	"(SELECT sys, db_schema,db_sid from src_column GROUP BY sys,db_schema,db_sid ) t1 "+
         " inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
 
@@ -174,7 +174,7 @@ public class SrcdbToTgtdb {
     public void generateDML_SnapshotToPartition() {
 
         String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
 
@@ -208,7 +208,7 @@ public class SrcdbToTgtdb {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
 
         String sqlString = "SELECT * from src_tablename_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         //SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
@@ -241,7 +241,7 @@ public class SrcdbToTgtdb {
         HashMap<String, String> columnConvert = new HashMap<String, String>();
 
         String sqlString = "SELECT * from etl_column_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         //SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
@@ -274,7 +274,7 @@ public class SrcdbToTgtdb {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
         //查找语句
         String sqlString = "SELECT * from src_tabschema_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -920,7 +920,7 @@ public class SrcdbToTgtdb {
         HashMap<String, List<SourceField>> StringAndListSourceFieldMap = new HashMap<String, List<SourceField>>();
         ResultSet resultSet = null;
         ResultSet resultSet1 = null;
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
 
         try {

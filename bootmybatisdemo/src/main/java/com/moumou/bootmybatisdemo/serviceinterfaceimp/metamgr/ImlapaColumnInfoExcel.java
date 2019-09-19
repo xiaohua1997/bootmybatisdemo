@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 
 public class ImlapaColumnInfoExcel {
@@ -27,7 +27,7 @@ public class ImlapaColumnInfoExcel {
         }else{
             sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema order by column_id asc";
         }
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         ImlapaColumnInfoExcel imlapaColumnInfoExcel = new ImlapaColumnInfoExcel();
@@ -71,7 +71,7 @@ public class ImlapaColumnInfoExcel {
     public HashMap<String, String> getConvertTable() {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
         String sqlString = "SELECT * from src_tablename_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -95,7 +95,7 @@ public class ImlapaColumnInfoExcel {
     public HashMap<String, String> getSys() {
         HashMap<String, String> sysConvert = new HashMap<String, String>();
         String sqlString = "SELECT sys,sys_num,db_type,db_sid,db_schema from src_system";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -204,7 +204,7 @@ public class ImlapaColumnInfoExcel {
         ResultSet resultSet = null;
         ResultSet resultSet1 = null;
         List<String> list = new ArrayList<String>();
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlString);

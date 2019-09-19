@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metadata;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metadata;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceFieldDao;
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceFieldLogDao;
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceSystemDao;
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceTableDao;
-import com.moumou.bootmybatisdemo.dataAlignment.db.ColumnTest;
-import com.moumou.bootmybatisdemo.dataAlignment.db.DbcpUtil;
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceFieldDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceFieldLogDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceSystemDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceTableDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.ColumnTest;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.DbcpUtil;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.MetaSrcColumn;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
@@ -150,7 +150,7 @@ public class UpdateAction {
 		Connection conn =  null;
 		try {
 			// 事务开始
-			JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+			JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
 			conn = jdbcConn.getDbConnection();
 			conn.setAutoCommit(false);
 			// 将该tableName在src_column中的元数据信息插入到src_column_log表中

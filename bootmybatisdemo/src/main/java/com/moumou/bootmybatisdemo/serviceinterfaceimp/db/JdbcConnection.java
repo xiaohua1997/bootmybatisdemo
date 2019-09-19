@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.db;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.db;
 
 
 

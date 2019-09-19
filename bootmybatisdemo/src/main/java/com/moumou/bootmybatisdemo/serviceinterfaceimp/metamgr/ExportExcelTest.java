@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
 import java.util.List;
 import java.util.Map;

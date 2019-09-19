@@ -1,9 +1,9 @@
-package com.moumou.bootmybatisdemo.dataAlignment.terminal;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal;
 
 import java.sql.SQLException;
 
-import com.moumou.bootmybatisdemo.dataAlignment.dao.SourceTableDao;
-import com.moumou.bootmybatisdemo.dataAlignment.metadata.UpdateAction;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceTableDao;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.metadata.UpdateAction;
 
 public class MetadataManagement {
 	private UpdateAction _updateAction = new UpdateAction();

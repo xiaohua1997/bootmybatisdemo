@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.dao;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.moumou.bootmybatisdemo.dataAlignment.db.*;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.*;
 import com.moumou.bootmybatisdemo.dataAlignment.model.*;
 
 
@@ -92,7 +92,7 @@ public class SourceTableDao {
 	private List<SourceTable> getList(String sql) {
 		ResultSet resultSet=null;
 		List<SourceTable> list = new ArrayList<SourceTable>();
-		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		if (connection == null) {
 			return null;

@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 
 public class TableInfoExcle {
@@ -27,7 +27,7 @@ public class TableInfoExcle {
 		// 查询那些表有主键
 		String sqlStringIsPk = "select table_name,is_pk from src_column  where is_pk = 'Y' group by table_name ,sys ";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		ResultSet resultSetIsPk = null;
@@ -73,7 +73,7 @@ public class TableInfoExcle {
 			sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
 		}
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		List<String[]> qryTableInfoTableOracleAll = new ArrayList<>();
@@ -126,7 +126,7 @@ public class TableInfoExcle {
 				+ tgttypeString
 				+ "' GROUP BY scl.table_name,stb.table_name,stb.sys,scl.sys ";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		ResultSet resultSet = null;
 		Connection connection = jdbcConn.getDbConnection();
 		String tableName = "";
@@ -199,7 +199,7 @@ public class TableInfoExcle {
 		ResultSet resultSet = null;
 		ResultSet resultSet1 = null;
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 
 		try {
@@ -313,7 +313,7 @@ public class TableInfoExcle {
 		ResultSet resultSet1 = null;
 		List<String> list = new ArrayList<String>();
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		try {
 			PreparedStatement preparedStatement = connection
@@ -480,7 +480,7 @@ public class TableInfoExcle {
 		HashMap<String, String> sysConvert = new HashMap<String, String>();
 		String sqlString = "SELECT sys,sys_num,db_type,db_sid,db_schema from src_system";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		try {
@@ -515,7 +515,7 @@ public class TableInfoExcle {
 
 		String sqlString = "SELECT * from src_tablename_convert";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		try {
@@ -550,7 +550,7 @@ public class TableInfoExcle {
 
 		String sqlString = "SELECT * from etl_column_convert";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		
@@ -586,7 +586,7 @@ public class TableInfoExcle {
 		// 查找语句
 		String sqlString = "SELECT * from src_tabschema_convert";
 		JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456",
-				"192.10.30.15", "3306", "edwassisdb", "mysql");
+				"192.10.30.15", "3306", "edw_dev", "mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		ResultSet resultSet = null;
 		try {

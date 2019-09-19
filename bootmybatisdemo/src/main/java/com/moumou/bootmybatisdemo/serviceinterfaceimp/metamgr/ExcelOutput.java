@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.metamgr;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr;
 
 import java.io.File;
 import java.io.FileNotFoundException;

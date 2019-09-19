@@ -1,9 +1,9 @@
-package com.moumou.bootmybatisdemo.dataAlignment.dao;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.moumou.bootmybatisdemo.dataAlignment.db.JdbcConnection;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 
 /**
@@ -20,7 +20,7 @@ public class SourceSystemDao {
 	 */
 	public java.util.List<SourceSystem> getSourceSystem() throws SQLException{
 		java.util.List<SourceSystem> ret = null;
-		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 		String sql = "select * from src_system";
 		java.sql.Connection conn = jdbcConn.getDbConnection();
 		java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
@@ -38,7 +38,7 @@ public class SourceSystemDao {
 	
 	public List<SourceSystem> getSourceSystem(String sys) throws SQLException {
 		java.util.List<SourceSystem> ret = null;
-		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 		String sql = "select * from src_system where sys='"+ sys +"'";
 		java.sql.Connection conn = jdbcConn.getDbConnection();
 		java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class SourceSystemDao {
 	
 	public SourceSystem getSourceSystem(String sys, String sid, String schema) throws SQLException {
 		List<SourceSystem> ret = null;
-		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 		String sql = "select * from src_system where sys='"+ sys +"' and db_sid = '" + sid + "' and db_schema = '" + schema + "'";
 		java.sql.Connection conn = jdbcConn.getDbConnection();
 		java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class SourceSystemDao {
 //	 */
 //	public SourceSystem getSourceSystem(String sysCode) throws SQLException{
 //		SourceSystem ret = null;
-//		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+//		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 //		String sql = "select * from src_system where sys='"+sysCode+"'";
 //		java.sql.Connection conn = jdbcConn.getDbConnection();
 //		java.sql.PreparedStatement pstm = conn.prepareStatement(sql);

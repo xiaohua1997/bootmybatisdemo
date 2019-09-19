@@ -1,4 +1,4 @@
-package com.moumou.bootmybatisdemo.dataAlignment.common;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.common;
 
 public class StringExtension {
     public static String toStyleString(String in) {

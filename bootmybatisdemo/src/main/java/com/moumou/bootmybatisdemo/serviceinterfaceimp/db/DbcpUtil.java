@@ -1,6 +1,6 @@
-package com.moumou.bootmybatisdemo.dataAlignment.db;
+package com.moumou.bootmybatisdemo.serviceinterfaceimp.db;
 
-import com.moumou.bootmybatisdemo.dataAlignment.metamgr.SrcdbToTgtdb;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.SrcdbToTgtdb;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -32,7 +32,7 @@ public class DbcpUtil {
 
     static {
         String sqlString = "SELECT * from src_system";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -151,7 +151,7 @@ public class DbcpUtil {
         } else if ("mysql".equals(dbType)) {
             /*
              *  driverClassName=com.mysql.jdbc.Driver
-             *  url=jdbc:mysql://192.10.30.15:3306/edwassisdb?useUnicode=true&characterEncoding=UTF8
+             *  url=jdbc:mysql://192.10.30.15:3306/edw_dev?useUnicode=true&characterEncoding=UTF8
              *  username=edw
              *  password=edw123456
              */
