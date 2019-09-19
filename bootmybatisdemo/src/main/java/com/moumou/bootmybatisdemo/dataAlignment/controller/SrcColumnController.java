@@ -61,4 +61,10 @@ public class SrcColumnController {
         srcColumnService.delSrcColumn(srcColumn);
         return null;
     }
+    @ApiOperation("生成字典：src_column")
+    @RequestMapping(value = "/createDictionary",method = RequestMethod.GET)
+    public @ResponseBody
+    String createDictionary(){
+        return srcColumnService.createDictionary();
+    }
 }

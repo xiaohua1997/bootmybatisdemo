@@ -2,6 +2,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcTableService;
 import io.swagger.annotations.ApiOperation;

@@ -13,5 +13,7 @@ public interface SrcColumnService {
     boolean delSrcColumn(SrcColumn srcColumn);
 
     String addSrcColumn(SrcColumn srcColumn);
+    
+    String createDictionary();
 
 }

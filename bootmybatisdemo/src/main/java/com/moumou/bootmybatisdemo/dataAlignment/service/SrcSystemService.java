@@ -14,7 +14,8 @@ public interface SrcSystemService {
     boolean delSrcSys(SrcSystem srcSystem);
 
     String addSrcSys(SrcSystem srcSystem);
-
-
-
+    
+    List<String> querySid(SrcSystem srcSystem);
+    
+    List<String> querySchema(SrcSystem srcSystem);
 }

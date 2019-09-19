@@ -70,4 +70,16 @@ public class SrcSystemController {
 //        System.out.println(new Date());
 //        return srcSystemService.querySrcTable();
 //    }
+    
+    @RequestMapping(value = "/querySid", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public List<String> querySid (@RequestBody SrcSystem srcSystem){
+        LOG.info("根据sys查询:"+srcSystem.getSys());
+        return srcSystemService.querySid(srcSystem);
+    }
+    
+    @RequestMapping(value = "/querySchema", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public List<String> querySchema (@RequestBody SrcSystem srcSystem){
+        LOG.info("根据sys和sid查询:"+srcSystem.getSys()+","+srcSystem.getDbSid());
+        return srcSystemService.querySchema(srcSystem);
+    }
 }

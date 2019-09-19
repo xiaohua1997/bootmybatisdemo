@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ExportExcelTest {
-	public static void main(String[] args) {
+	public void createDictionary() {
 		//表级 (%表示全部系统的表级,生成具体系统可传入相应的系统缩写 如：CPZX)
 		Map<String, List<String[]>>  qryTableInfoTableAll = new TableInfoExcle().qryTableInfoGather("%");
 		//取到表级信息 (impala)
@@ -23,9 +23,9 @@ public class ExportExcelTest {
 		//System.out.println(dataListImpalaColumnAll.size());
 
 		//导出excel(impala)
-		new ExcelOutput().exportExcel(impalaTableInfoList,dataListImpalaColumnAll, "数据仓库字典(ODS)_impala", "E:/DataDictionary/");
+		new ExcelOutput().exportExcel(impalaTableInfoList,dataListImpalaColumnAll, "数据仓库字典(ODS)_impala", "D:/DataDictionary/");
 		//导出excel(oracle)
-		new ExcelOutput().exportExcel(oracleTableInfoList,dataListOracleColumnAll, "数据仓库字典(ODS)_oracle", "E:/DataDictionary/");
+		new ExcelOutput().exportExcel(oracleTableInfoList,dataListOracleColumnAll, "数据仓库字典(ODS)_oracle", "D:/DataDictionary/");
 		
 	}
 }

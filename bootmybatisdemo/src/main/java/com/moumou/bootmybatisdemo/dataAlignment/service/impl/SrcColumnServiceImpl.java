@@ -3,6 +3,8 @@ package com.moumou.bootmybatisdemo.dataAlignment.service.impl;
 import com.moumou.bootmybatisdemo.dataAlignment.mapper.SrcColumnMapper;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcColumnService;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.ExportExcelTest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 
     @Autowired
     private SrcColumnMapper srcColumnMapper;
+    private ExportExcelTest exportExcelTest;
 
     @Override
     public List<SrcColumn> querySrcColumn() {
@@ -49,5 +52,11 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 	public boolean delSrcColumn(SrcColumn srcColumn) {
 		
 		return srcColumnMapper.delSrcColumn(srcColumn);
+	}
+
+	@Override
+	public String createDictionary() {
+		exportExcelTest.createDictionary();
+		return "";
 	}
 }

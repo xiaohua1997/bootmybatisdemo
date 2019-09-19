@@ -1,5 +1,7 @@
 package com.moumou.bootmybatisdemo.dataAlignment.service;
 
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
+
 public interface EnterMetaMenuService {
 	String synAllSystem();
 	
@@ -7,5 +9,7 @@ public interface EnterMetaMenuService {
 	
 	String synSchema(String sys, String sid, String schema);
 	
-	String synTable(String sys, String sid, String schema, String tableInfo);
+	String synTable(SrcTable srcTable);
+	
+	boolean judgeTable(SrcTable srcTable);
 }

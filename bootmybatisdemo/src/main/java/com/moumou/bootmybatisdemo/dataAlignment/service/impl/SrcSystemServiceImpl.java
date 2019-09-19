@@ -51,5 +51,15 @@ public class SrcSystemServiceImpl implements SrcSystemService {
         return "添加成功";
     }
 
+	@Override
+	public List<String> querySid(SrcSystem srcSystem) {
+		return srcSystemMapper.querySid(srcSystem);
+	}
+
+	@Override
+	public List<String> querySchema(SrcSystem srcSystem) {
+		return srcSystemMapper.querySchema(srcSystem);
+	}
+
 
 }
