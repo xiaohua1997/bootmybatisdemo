@@ -34,8 +34,12 @@ public class EtlColumnConvertServiceImpl implements EtlColumnConvertService{
 
 	@Override
 	public boolean delEtlColumnConvert(EtlColumnConvert etlColumnConvert) {
-		
-		return etlColumnConvertMapper.delEtlColumnCon(etlColumnConvert);
+		int i = etlColumnConvertMapper.delEtlColumnCon(etlColumnConvert);
+		if(i==0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 
 	@Override

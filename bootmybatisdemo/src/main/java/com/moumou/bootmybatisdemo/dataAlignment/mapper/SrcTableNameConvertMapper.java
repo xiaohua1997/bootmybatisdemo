@@ -47,9 +47,9 @@ public interface SrcTableNameConvertMapper {
     int addSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 	
 	//测试不调用这个删除（实际要用的删除方法）
-//    @Delete("delete table src_tablename_convert where src_table_name =#{srcTableName} and tgt_table_name =#{tgtTableName} and sys = #{sys} and remark =#{remark}")
-//    void delSrcSys(SrcTableNameConvert srcTableNameConvert);
+    @Delete("delete from src_tablename_convert where src_table_name =#{srcTableName} and tgt_table_name =#{tgtTableName} and sys = #{sys} and remark =#{remark}")
+    int delSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 	//测试删除方法(置无效)
-	@Update("update src_tablename_convert set invalid = now() where src_table_name = #{srcTableName} and tgt_table_name = #{tgtTableName} and sys = #{sys} and remark = #{remark}")
-    boolean delSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
+//	@Update("update src_tablename_convert set invalid = now() where src_table_name = #{srcTableName} and tgt_table_name = #{tgtTableName} and sys = #{sys} and remark = #{remark}")
+//    boolean delSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 }

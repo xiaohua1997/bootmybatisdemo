@@ -63,9 +63,8 @@ import io.swagger.annotations.ApiOperation;
 		}
 		
 		@RequestMapping(value = "/deletltypeconvert" ,method = RequestMethod.POST)
-		public String delEtlTypeConvert (@RequestBody EtlTypeConvert etlTypeConvert){
+		public boolean delEtlTypeConvert (@RequestBody EtlTypeConvert etlTypeConvert){
 		  LOG.info("删除");
-		  etlTypeConvertService.delEtlTypeConvert(etlTypeConvert);
-		  return null;
+		  return etlTypeConvertService.delEtlTypeConvert(etlTypeConvert);
 		  }
 	}

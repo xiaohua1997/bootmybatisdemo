@@ -63,9 +63,8 @@ import io.swagger.annotations.ApiOperation;
 	}
 	
 	@RequestMapping(value = "/delsrcconvert" ,method = RequestMethod.POST)
-	public String delSrcConver (@RequestBody SrcTableNameConvert srcTableNameConvert){
+	public boolean delSrcConver (@RequestBody SrcTableNameConvert srcTableNameConvert){
 	  LOG.info("删除");
-	  srcTableNameConvertService.delSrcTableNameConvert(srcTableNameConvert);
-	  return null;
+	  return srcTableNameConvertService.delSrcTableNameConvert(srcTableNameConvert);
 	  }
 	}

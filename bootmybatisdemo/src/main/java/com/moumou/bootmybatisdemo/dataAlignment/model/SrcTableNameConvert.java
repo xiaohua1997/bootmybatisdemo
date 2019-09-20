@@ -7,6 +7,9 @@ public class SrcTableNameConvert {
 	private String remark;
 	
 	
+	public SrcTableNameConvert() {
+		super();
+	}
 	public SrcTableNameConvert(String srcTableName, String tgtTableName, String sys, String remark) {
 		super();
 		this.srcTableName = srcTableName;

@@ -2,6 +2,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -48,9 +49,9 @@ public interface EtlColumnConvertMapper {
     int addEtlColumnCon(EtlColumnConvert etlColumnConvert);
 
 	//测试不调用这个删除（实际要用的删除方法）
-//  @Delete("delete table etl_column_convert where src_column =#{srcColumn} and tgt_column =#{tgtColumn} and table_name = #{tableName} and sys =#{sys}")
-//  void delEtlColumnCon(EtlColumnConvert etlColumnConvert);
+  @Delete("delete from etl_column_convert where src_column =#{srcColumn} and tgt_column =#{tgtColumn} and table_name = #{tableName} and sys =#{sys}")
+  int delEtlColumnCon(EtlColumnConvert etlColumnConvert);
   //测试删除方法（置无效）
-  @Update("update etl_column_convert set invalid = now() where src_column =#{srcColumn} and tgt_column =#{tgtColumn} and table_name = #{tableName} and sys =#{sys}")
-  boolean delEtlColumnCon(EtlColumnConvert etlColumnConvert);
+//  @Update("update etl_column_convert set invalid = now() where src_column =#{srcColumn} and tgt_column =#{tgtColumn} and table_name = #{tableName} and sys =#{sys}")
+//  boolean delEtlColumnCon(EtlColumnConvert etlColumnConvert);
 }
