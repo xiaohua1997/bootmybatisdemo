@@ -12,7 +12,7 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.MetadataManagemen
 @Service
 public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 
-	private MetadataManagement aMetadataManagement;
+	private MetadataManagement aMetadataManagement = new MetadataManagement();
 
 	@Override
 	public String synAllSystem() {
