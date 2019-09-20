@@ -17,11 +17,11 @@ public interface SrcSystemMapper {
             "where sys =#{sys} and sys_num =#{sysNum} and db_sid = #{dbSid} and db_schema =#{dbSchema} ")
     int uptateSrcSys(SrcSystem srcSystem);
 //    //不调用这个删除
-//    @Delete("delete table src_system where sys =#{sys} and sys_num =#{sysNum} and db_sid = #{dbSid} and db_schema =#{dbSchema}")
-//    void delSrcSys(SrcSystem srcSystem);
+    @Delete("delete from src_system where sys =#{sys} and sys_num =#{sysNum} and db_sid = #{dbSid} and db_schema =#{dbSchema}")
+    int delSrcSys(SrcSystem srcSystem);
     //删除（置无效）
-    @Update("update src_system set invalid = now() where sys = #{sys} and sys_num = #{sysNum} and db_sid = #{dbSid} and db_schema = #{dbSchema}")
-    boolean delSrcSys(SrcSystem srcSystem);
+//    @Update("update src_system set invalid = now() where sys = #{sys} and sys_num = #{sysNum} and db_sid = #{dbSid} and db_schema = #{dbSchema}")
+//    boolean delSrcSys(SrcSystem srcSystem);
     /*增加*/
     @Insert("insert into src_system(sys, sys_num, db_type, db_version, db_sid, db_schema, db_charset, db_ip,  db_port,  username,  password, encrpassword, remark) \n" +
             "values(#{sys},#{sysNum},#{dbType},#{dbVersion},#{dbSid},#{dbSchema},#{dbCharset},#{dbIp},#{dbPort},#{username},#{password},#{encrpassword},#{remark})")

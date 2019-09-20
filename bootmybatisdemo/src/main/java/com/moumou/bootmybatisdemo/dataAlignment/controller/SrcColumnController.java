@@ -56,10 +56,9 @@ public class SrcColumnController {
     }
     
     @RequestMapping(value = "/delsrccolumn" ,method = RequestMethod.POST)
-    public String delSrcColumn (@RequestBody SrcColumn srcColumn){
+    public boolean delSrcColumn (@RequestBody SrcColumn srcColumn){
         LOG.info("删除");
-        srcColumnService.delSrcColumn(srcColumn);
-        return null;
+        return srcColumnService.delSrcColumn(srcColumn);
     }
     @ApiOperation("生成字典：src_column")
     @RequestMapping(value = "/createDictionary",method = RequestMethod.GET)

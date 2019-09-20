@@ -48,6 +48,11 @@ public class SrcTableServiceImpl implements SrcTableService{
 
 	@Override
 	public boolean delSrcTable(SrcTable srcTable) {
-		return srcTableMapper.delSrcTable(srcTable);
+		int i = srcTableMapper.delSrcTable(srcTable);
+		if(i==0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 }

@@ -1,6 +1,8 @@
 package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -69,9 +71,9 @@ public interface SrcColumnMapper {
     int addSrcColumn(SrcColumn srcColumn);
 
     //不调用这个删除
-//    @Delete("delete table src_system where sys =#{sys} and sys_num =#{sysNum} and db_sid = #{dbSid} and db_schema =#{dbSchema}")
-//    void delSrcSys(SrcSystem srcSystem);
+    @Delete("delete from src_column where sys =#{sys} and db_sid = #{dbSid} and db_schema =#{dbSchema} and table_name =#{tableName} and column_id =#{columnId} and column_name =#{columnName} and column_type =#{columnType} and column_cn_name =#{columnCnName} and is_pk =#{isPk} and not_null =#{notNull} and default_value =#{defaultValue} and is_dk =#{isDk} and break_flag =#{breakFlag}")
+    int delSrcColumn(SrcColumn srcColumn);
     //删除（置无效）
-    @Update("update src_column set invalid = now() where sys = #{sys} and sys_num = #{sysNum} and db_sid = #{dbSid} and db_schema = #{dbSchema}")
-    boolean delSrcColumn(SrcColumn srcColumn);
+//    @Update("update src_column set invalid = now() where sys = #{sys} and sys_num = #{sysNum} and db_sid = #{dbSid} and db_schema = #{dbSchema}")
+//    boolean delSrcColumn(SrcColumn srcColumn);
 }

@@ -33,7 +33,12 @@ public class SrcSystemServiceImpl implements SrcSystemService {
 
     @Override
     public boolean delSrcSys(SrcSystem srcSystem) {
-        return srcSystemMapper.delSrcSys(srcSystem);
+        int i = srcSystemMapper.delSrcSys(srcSystem);
+        if(i==0) {
+        	return false;
+        }else {
+        	return true;
+        }
     }
 
     @Override

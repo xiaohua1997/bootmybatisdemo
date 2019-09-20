@@ -57,10 +57,9 @@ public class SrcSystemController {
     }
 
     @RequestMapping(value = "/delsrcsystem" ,method = RequestMethod.POST)
-    public String delSrcSystem (@RequestBody SrcSystem srcSystem){
+    public boolean delSrcSystem (@RequestBody SrcSystem srcSystem){
         LOG.info("删除");
-        srcSystemService.delSrcSys(srcSystem);
-        return null;
+        return srcSystemService.delSrcSys(srcSystem);
     }
 
 //  不应该放在srcsystem的controller中

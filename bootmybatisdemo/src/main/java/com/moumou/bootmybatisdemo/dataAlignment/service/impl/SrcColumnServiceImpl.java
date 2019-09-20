@@ -50,8 +50,12 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 
 	@Override
 	public boolean delSrcColumn(SrcColumn srcColumn) {
-		
-		return srcColumnMapper.delSrcColumn(srcColumn);
+		int i = srcColumnMapper.delSrcColumn(srcColumn);
+		if(i==0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 
 	@Override

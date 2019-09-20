@@ -12,7 +12,28 @@ public class SrcTable {
     private String templateCode;
     private String isPutToEtldb;
 
-    public String getSys() {
+    
+    
+    public SrcTable() {
+		super();
+	}
+
+	public SrcTable(String sys, String dbSid, String tableSchema, String tableName, String tableCnName, String incCdt,
+			String ifMark, String tableType, String templateCode, String isPutToEtldb) {
+		super();
+		this.sys = sys;
+		this.dbSid = dbSid;
+		this.tableSchema = tableSchema;
+		this.tableName = tableName;
+		this.tableCnName = tableCnName;
+		this.incCdt = incCdt;
+		this.ifMark = ifMark;
+		this.tableType = tableType;
+		this.templateCode = templateCode;
+		this.isPutToEtldb = isPutToEtldb;
+	}
+
+	public String getSys() {
         return sys;
     }
 

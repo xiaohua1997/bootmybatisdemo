@@ -15,7 +15,32 @@ public class SrcColumn {
     private String isDk;
     private String breakFlag;
 
-    public String getSys() {
+    
+    
+    public SrcColumn() {
+		super();
+	}
+
+	public SrcColumn(String sys, String dbSid, String dbSchema, String tableName, String columnId, String columnName,
+			String columnType, String columnCnName, String isPk, String notNull, String defaultValue, String isDk,
+			String breakFlag) {
+		super();
+		this.sys = sys;
+		this.dbSid = dbSid;
+		this.dbSchema = dbSchema;
+		this.tableName = tableName;
+		this.columnId = columnId;
+		this.columnName = columnName;
+		this.columnType = columnType;
+		this.columnCnName = columnCnName;
+		this.isPk = isPk;
+		this.notNull = notNull;
+		this.defaultValue = defaultValue;
+		this.isDk = isDk;
+		this.breakFlag = breakFlag;
+	}
+
+	public String getSys() {
         return sys;
     }
 
