@@ -4,5 +4,5 @@ public interface TestOracleAndImpalaFileService {
 	
 	 String oracleFileDdl();
 	 String impalaFileDdl();
-
+	 String oracleJobFile();
 }

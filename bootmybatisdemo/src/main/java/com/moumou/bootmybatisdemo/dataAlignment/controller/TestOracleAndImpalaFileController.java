@@ -23,5 +23,8 @@ public class TestOracleAndImpalaFileController {
 		return testOracleAndImpalaFileService.impalaFileDdl();
 	}
 	
-
+	@RequestMapping(value="/oraclejobfile",method = RequestMethod.GET)
+	public String oracleJobFile() {
+		return testOracleAndImpalaFileService.oracleJobFile();
+	}
 }
