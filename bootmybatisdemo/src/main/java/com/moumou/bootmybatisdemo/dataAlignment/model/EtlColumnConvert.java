@@ -6,6 +6,11 @@ public class EtlColumnConvert {
 	private String tableName;
 	private String sys;
 	
+	
+	public EtlColumnConvert() {
+		super();
+	}
+
 	public EtlColumnConvert(String srcColumn, String tgtColumn, String tableName, String sys) {
 		super();
 		this.srcColumn = srcColumn;

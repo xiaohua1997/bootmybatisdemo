@@ -68,9 +68,9 @@ public interface EtlTypeConvertMapper {
     int addEtlConvert(EtlTypeConvert etlTypeConvert);
 	
    //测试不调用这个删除（实际要用的删除方法）
-//  @Delete("delete table etl_type_convert where src_db_type =#{srcDbType} and src_column_type =#{srcColumnType} and tgt_db_type = #{tgtDbType} and tgt_column_type =#{tgtColumnType} and tgt_column_big_type =#{tgtColumnBigType} and tgt_column_length =#{tgtColumnLength} and tgt_column_default =#{tgtColumnDefault} and tgt_column_format =#{tgtColumnFormat} and convert_mode =#{convertMode}")
-//  void delEtlConvert(EtlTypeConvert etlTypeConvert);
+  @Delete("delete from etl_type_convert where src_db_type =#{srcDbType} and src_column_type =#{srcColumnType} and tgt_db_type = #{tgtDbType} and tgt_column_type =#{tgtColumnType} and tgt_column_big_type =#{tgtColumnBigType} and tgt_column_length =#{tgtColumnLength} and tgt_column_default =#{tgtColumnDefault} and tgt_column_format =#{tgtColumnFormat} and convert_mode =#{convertMode}")
+  int delEtlConvert(EtlTypeConvert etlTypeConvert);
   //测试删除方法（置无效）
-  @Update("update etl_type_convert set invalid = now() where src_db_type =#{srcDbType} and src_column_type =#{srcColumnType} and tgt_db_type = #{tgtDbType} and tgt_column_type =#{tgtColumnType} and tgt_column_big_type =#{tgtColumnBigType} and tgt_column_length =#{tgtColumnLength} and tgt_column_default =#{tgtColumnDefault} and tgt_column_format =#{tgtColumnFormat} and convert_mode =#{convertMode}")
-  boolean delEtlConvert(EtlTypeConvert etlTypeConvert);
+//  @Update("update etl_type_convert set invalid = now() where src_db_type =#{srcDbType} and src_column_type =#{srcColumnType} and tgt_db_type = #{tgtDbType} and tgt_column_type =#{tgtColumnType} and tgt_column_big_type =#{tgtColumnBigType} and tgt_column_length =#{tgtColumnLength} and tgt_column_default =#{tgtColumnDefault} and tgt_column_format =#{tgtColumnFormat} and convert_mode =#{convertMode}")
+//  boolean delEtlConvert(EtlTypeConvert etlTypeConvert);
 }

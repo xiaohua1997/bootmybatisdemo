@@ -34,8 +34,12 @@ public class EtlTypeConvertServiceImpl implements EtlTypeConvertService{
 
 	@Override
 	public boolean delEtlTypeConvert(EtlTypeConvert etlTypeConvert) {
-
-		return etlTypeConvertMapper.delEtlConvert(etlTypeConvert);
+        int i = etlTypeConvertMapper.delEtlConvert(etlTypeConvert);
+        if(i==0) {
+        	return false;
+        }else {
+        	return true;
+        }
 	}
 
 	@Override

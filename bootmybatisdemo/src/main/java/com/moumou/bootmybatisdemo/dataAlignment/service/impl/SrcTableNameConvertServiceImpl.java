@@ -38,8 +38,12 @@ public class SrcTableNameConvertServiceImpl implements SrcTableNameConvertServic
 
 	@Override
 	public boolean delSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert) {
-		
-		return srcTableNameConvertMapper.delSrcTableNameConvert(srcTableNameConvert);
+		int i = srcTableNameConvertMapper.delSrcTableNameConvert(srcTableNameConvert);
+		if(i==0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 
 	@Override

@@ -11,6 +11,11 @@ public class EtlTypeConvert {
 	private String tgtColumnFormat;
 	private String convertMode;
 	
+	
+	public EtlTypeConvert() {
+		super();
+	}
+
 	public EtlTypeConvert(String srcDbType, String srcColumnType, String tgtDbType, String tgtColumnType,
 			String tgtColumnBigType, String tgtColumnLength, String tgtColumnDefault, String tgtColumnFormat,
 			String convertMode) {
