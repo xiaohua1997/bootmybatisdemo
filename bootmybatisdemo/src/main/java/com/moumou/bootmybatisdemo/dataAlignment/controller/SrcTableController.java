@@ -55,9 +55,8 @@ public class SrcTableController {
     }
 
     @RequestMapping(value = "/delsrctable" ,method = RequestMethod.POST)
-    public String delSrcTable (@RequestBody SrcTable srcTable){
+    public boolean delSrcTable (@RequestBody SrcTable srcTable){
         LOG.info("删除");
-        srcTableService.delSrcTable(srcTable);
-        return null;
+        return srcTableService.delSrcTable(srcTable);
     }
 }
