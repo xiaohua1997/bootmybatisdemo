@@ -16,7 +16,7 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 
     @Autowired
     private SrcColumnMapper srcColumnMapper;
-    private ExportExcelTest exportExcelTest;
+    private ExportExcelTest exportExcelTest = new ExportExcelTest();
 
     @Override
     public List<SrcColumn> querySrcColumn() {
@@ -60,7 +60,6 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 
 	@Override
 	public String createDictionary() {
-		exportExcelTest.createDictionary();
-		return "";
+		return exportExcelTest.createDictionary();
 	}
 }
