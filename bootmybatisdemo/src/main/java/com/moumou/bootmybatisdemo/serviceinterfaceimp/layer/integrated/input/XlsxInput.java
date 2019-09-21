@@ -16,6 +16,8 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.table.source.*
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.table.target.TargetTable;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
@@ -176,7 +178,13 @@ public class XlsxInput {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (EncryptedDocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         System.out.println("OK - " + allBlockSet.size());
 	}
