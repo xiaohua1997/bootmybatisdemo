@@ -55,4 +55,22 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 		}
 	}
 
+	@Override
+	public String impalaJobFile() {
+		String level = "all",scheduleSystem = "azkaban",dbtype = "impala";
+		try {
+			aScheduleJobs.generate(level, scheduleSystem, dbtype);
+			return "success";
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "false";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "false";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "false";
+		}
+	}
+
 }
