@@ -93,7 +93,7 @@ public class SrcSystemController {
         List<SrcSystem> srcsystem = srcSystemService.querySidAndSchema(srcSystem);
         map.put("status", "success");
         map.put("msg", "查询成功");
-        map.put("sys", srcsystem);
+        map.put("srcsystem", srcsystem);
         return new JsonResult(map);
     }
 }
