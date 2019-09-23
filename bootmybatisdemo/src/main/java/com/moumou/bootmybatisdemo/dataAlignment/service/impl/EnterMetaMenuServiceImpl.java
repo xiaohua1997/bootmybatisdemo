@@ -18,10 +18,10 @@ public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 	public String synAllSystem() {
 		try {
 			aMetadataManagement.updateFromSourceDB();
-			return "成功";
+			return "true";
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "失败";
+			return "false";
 		}
 	}
 
@@ -29,10 +29,10 @@ public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 	public String synSystem(String sys) {
 		try {
 			aMetadataManagement.updateFromSourceDB(sys);
-			return "成功";
+			return "true";
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "失败";
+			return "false";
 		}
 	}
 
@@ -40,10 +40,10 @@ public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 	public String synSchema(String sys, String sid, String schema) {
 		try {
 			aMetadataManagement.updateFromSourceDB(sys, sid, schema);
-			return "成功";
+			return "true";
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "失败";
+			return "false";
 		}
 	}
 
@@ -59,10 +59,10 @@ public class EnterMetaMenuServiceImpl implements EnterMetaMenuService {
 						srcTable.getTableSchema(), srcTable.getTableName(), srcTable.getTableCnName(),
 						srcTable.getIfMark());
 			}
-			return "成功";
+			return "true";
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "失败";
+			return "false";
 		}
 
 	}

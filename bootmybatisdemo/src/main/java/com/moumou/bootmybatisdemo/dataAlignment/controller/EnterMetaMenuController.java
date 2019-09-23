@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.EnterMetaMenuService;
+import com.moumou.bootmybatisdemo.util.JsonResult;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -20,67 +21,80 @@ public class EnterMetaMenuController {
 	
 	@ApiOperation("同步所有：src_column")
 	@RequestMapping(value = "/synallsystem",method = RequestMethod.GET)
-	public String synAllSystem() {
+	public JsonResult synAllSystem() {
+		System.out.println("synAllSystem");
 		Map<String, String> map = new HashMap<String, String>();
 		String s;
 		s=enterMetaMenuService.synAllSystem();
-		if("成功".equals(s)) {
+		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新所有系统完成");
 		} else {
 			map.put("status", "error");
 			map.put("msg", "更新失败");
 		}
-		return enterMetaMenuService.synAllSystem();
+		return new JsonResult(map);
+//		return enterMetaMenuService.synAllSystem();
 	}
 	
 	@RequestMapping(value = "/synSystem", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-	public @ResponseBody String synSystem (@RequestBody SrcTable srcTable){
+	public @ResponseBody JsonResult synSystem (@RequestBody SrcTable srcTable){
+		System.out.println("synSystem");
+		System.out.println(srcTable);
 		Map<String, String> map = new HashMap<String, String>();
 		String s,sys=srcTable.getSys();
 		s=enterMetaMenuService.synSystem(sys);
-		if("成功".equals(s)) {
+		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新" + sys + "完成");
 		} else {
 			map.put("status", "error");
 			map.put("msg", "更新失败");
 		}
-		return enterMetaMenuService.synSystem(srcTable.getSys());
+		return new JsonResult(map);
+//		return enterMetaMenuService.synSystem(srcTable.getSys());
 	}
 	
 	@RequestMapping(value = "/synSchema", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-	public @ResponseBody String synSchema (@RequestBody SrcTable srcTable){
+	public @ResponseBody JsonResult synSchema (@RequestBody SrcTable srcTable){
+		System.out.println("synSchema");
+		System.out.println(srcTable);
 		Map<String, String> map = new HashMap<String, String>();
 		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema();
 		s=enterMetaMenuService.synSchema(sys, sid, schema);
-		if("成功".equals(s)) {
+		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "完成");
 		} else {
 			map.put("status", "error");
 			map.put("msg", "更新失败");
 		}
-		return enterMetaMenuService.synSchema(sys, sid, schema);
+		return new JsonResult(map);
+//		return enterMetaMenuService.synSchema(sys, sid, schema);
 	}
 	
 	@RequestMapping(value = "/synTable", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-	public @ResponseBody String synTable (@RequestBody SrcTable srcTable){
+	public @ResponseBody JsonResult synTable (@RequestBody SrcTable srcTable){
+		System.out.println("synTable");
+		System.out.println(srcTable);
 		Map<String, String> map = new HashMap<String, String>();
 		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema(),tableName=srcTable.getTableName();
 		s=enterMetaMenuService.synTable(srcTable);
-		if("成功".equals(s)) {
+		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "-" + tableName + "完成");
 		} else {
 			map.put("status", "error");
 			map.put("msg", "更新失败");
 		}
-		return enterMetaMenuService.synTable(srcTable);
+		return new JsonResult(map);
+//		return enterMetaMenuService.synTable(srcTable);
 	}
 	
 	@RequestMapping(value = "/judgeTable", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-	public @ResponseBody boolean judgeTable (@RequestBody SrcTable srcTable){
+	public @ResponseBody JsonResult judgeTable (@RequestBody SrcTable srcTable){
+		System.out.println("judgeTable");
+		System.out.println(srcTable);
 		Map<String, String> map = new HashMap<String, String>();
 		boolean f = enterMetaMenuService.judgeTable(srcTable);
 		if(f) {
@@ -90,6 +104,7 @@ public class EnterMetaMenuController {
 			map.put("status", "error");
 			map.put("msg", "表不存在，新表");
 		}
-	  return enterMetaMenuService.judgeTable(srcTable);
+		return new JsonResult(map);
+//		return enterMetaMenuService.judgeTable(srcTable);
 	}
 }
