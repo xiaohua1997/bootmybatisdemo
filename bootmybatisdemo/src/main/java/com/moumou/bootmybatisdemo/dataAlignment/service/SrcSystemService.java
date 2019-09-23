@@ -4,6 +4,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.service;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SrcSystemService {
 
@@ -15,7 +16,7 @@ public interface SrcSystemService {
 
     String addSrcSys(SrcSystem srcSystem);
     
-    List<String> querySid(SrcSystem srcSystem);
+    List<String> querySys();
     
-    List<String> querySchema(SrcSystem srcSystem);
+    List<SrcSystem> querySidAndSchema(SrcSystem srcSystem);
 }

@@ -2,7 +2,9 @@ package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
 import org.apache.ibatis.annotations.*;
 import java.util.List;
+import java.util.Map;
 
+import com.cloudera.impala.jdbc41.internal.apache.hadoop.hive.metastore.api.ThriftHiveMetastore.AsyncProcessor.list_privileges;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 
 @Mapper
@@ -26,10 +28,10 @@ public interface SrcSystemMapper {
     @Insert("insert into src_system(sys, sys_num, db_type, db_version, db_sid, db_schema, db_charset, db_ip,  db_port,  username,  password, encrpassword, remark) \n" +
             "values(#{sys},#{sysNum},#{dbType},#{dbVersion},#{dbSid},#{dbSchema},#{dbCharset},#{dbIp},#{dbPort},#{username},#{password},#{encrpassword},#{remark})")
     int addSrcSys(SrcSystem srcSystem);
-    //根据sys查询sid
-    @Select("select distinct(db_sid) from src_system where sys = #{sys}")
-    List<String> querySid(SrcSystem srcSystem);
-    //根据sys和sid查询schema
-    @Select("select distinct(db_schema) from src_system where sys = #{sys} and db_sid = #{dbSid}")
-    List<String> querySchema(SrcSystem srcSystem);
+    //查询表中所有的sys
+    @Select("select distinct(sys) from src_system")
+    List<String> querySys();
+    //根据sys查询sid和schema
+    @Select("select db_sid,db_schema from src_system where sys = #{sys}")
+    List<SrcSystem> querySidAndSchema(SrcSystem srcSystem);
 }

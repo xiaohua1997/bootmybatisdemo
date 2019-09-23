@@ -8,6 +8,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SrcSystemServiceImpl implements SrcSystemService {
@@ -57,14 +58,13 @@ public class SrcSystemServiceImpl implements SrcSystemService {
     }
 
 	@Override
-	public List<String> querySid(SrcSystem srcSystem) {
-		return srcSystemMapper.querySid(srcSystem);
+	public List<SrcSystem> querySidAndSchema(SrcSystem srcSystem) {
+		return srcSystemMapper.querySidAndSchema(srcSystem);
 	}
 
 	@Override
-	public List<String> querySchema(SrcSystem srcSystem) {
-		return srcSystemMapper.querySchema(srcSystem);
+	public List<String> querySys() {
+		return srcSystemMapper.querySys();
 	}
-
 
 }

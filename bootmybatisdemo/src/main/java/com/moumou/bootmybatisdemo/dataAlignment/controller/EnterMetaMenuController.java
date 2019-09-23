@@ -23,7 +23,7 @@ public class EnterMetaMenuController {
 	@RequestMapping(value = "/synallsystem",method = RequestMethod.GET)
 	public JsonResult synAllSystem() {
 		System.out.println("synAllSystem");
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		String s;
 		s=enterMetaMenuService.synAllSystem();
 		if("true".equals(s)) {
@@ -41,7 +41,7 @@ public class EnterMetaMenuController {
 	public @ResponseBody JsonResult synSystem (@RequestBody SrcTable srcTable){
 		System.out.println("synSystem");
 		System.out.println(srcTable);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		String s,sys=srcTable.getSys();
 		s=enterMetaMenuService.synSystem(sys);
 		if("true".equals(s)) {
@@ -59,7 +59,7 @@ public class EnterMetaMenuController {
 	public @ResponseBody JsonResult synSchema (@RequestBody SrcTable srcTable){
 		System.out.println("synSchema");
 		System.out.println(srcTable);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema();
 		s=enterMetaMenuService.synSchema(sys, sid, schema);
 		if("true".equals(s)) {
@@ -77,7 +77,7 @@ public class EnterMetaMenuController {
 	public @ResponseBody JsonResult synTable (@RequestBody SrcTable srcTable){
 		System.out.println("synTable");
 		System.out.println(srcTable);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema(),tableName=srcTable.getTableName();
 		s=enterMetaMenuService.synTable(srcTable);
 		if("true".equals(s)) {
@@ -95,7 +95,7 @@ public class EnterMetaMenuController {
 	public @ResponseBody JsonResult judgeTable (@RequestBody SrcTable srcTable){
 		System.out.println("judgeTable");
 		System.out.println(srcTable);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		boolean f = enterMetaMenuService.judgeTable(srcTable);
 		if(f) {
 			map.put("status", "success");

@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcSystemService;
+import com.moumou.bootmybatisdemo.util.JsonResult;
+
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/srcsystem")
@@ -70,15 +74,26 @@ public class SrcSystemController {
 //        return srcSystemService.querySrcTable();
 //    }
     
-    @RequestMapping(value = "/querySid", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public List<String> querySid (@RequestBody SrcSystem srcSystem){
-        LOG.info("根据sys查询:"+srcSystem.getSys());
-        return srcSystemService.querySid(srcSystem);
+    @ApiOperation("查询表：src_system")
+    @RequestMapping(value = "/querysys",method = RequestMethod.GET)
+    public @ResponseBody JsonResult querySys(){
+        System.out.println("查询sys");
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<String> sys = srcSystemService.querySys();
+        map.put("status", "success");
+        map.put("msg", "查询成功");
+        map.put("sys", sys);
+        return new JsonResult(map);
     }
     
-    @RequestMapping(value = "/querySchema", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public List<String> querySchema (@RequestBody SrcSystem srcSystem){
-        LOG.info("根据sys和sid查询:"+srcSystem.getSys()+","+srcSystem.getDbSid());
-        return srcSystemService.querySchema(srcSystem);
+    @RequestMapping(value = "/querysidandschema", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public JsonResult querySidAndSchema (@RequestBody SrcSystem srcSystem){
+        LOG.info("根据sys查询:"+srcSystem.getSys());
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<SrcSystem> srcsystem = srcSystemService.querySidAndSchema(srcSystem);
+        map.put("status", "success");
+        map.put("msg", "查询成功");
+        map.put("sys", srcsystem);
+        return new JsonResult(map);
     }
 }
