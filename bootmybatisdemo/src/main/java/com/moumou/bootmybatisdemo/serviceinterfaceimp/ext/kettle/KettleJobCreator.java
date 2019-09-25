@@ -28,8 +28,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceTable;
 
 public class KettleJobCreator {
-	@Autowired
-    private SrcSystemMapper srcSystemMapper;
+	
     private final String edw_db_ip = "192.10.40.169";
     private final String edw_db_type = "oracle";
     private final String edw_db_port = "1521";
@@ -376,11 +375,11 @@ public class KettleJobCreator {
         return ret;
     }
 
-    public void oracleKettle() throws SQLException, IOException {
+    /*public void oracleKettle() throws SQLException, IOException {
     	List<String> s = srcSystemMapper.querySys();
     	for(String sys:s) {
     		new KettleJobCreator().createKettleJob(sys);
-    	}
+    	}*/
             /*new KettleJobCreator().createKettleJob("CPZX");
             new KettleJobCreator().createKettleJob("CRM");
             new KettleJobCreator().createKettleJob("CWNC");
@@ -402,9 +401,9 @@ public class KettleJobCreator {
             new KettleJobCreator().createKettleJob("YCJY");
             new KettleJobCreator().createKettleJob("ZJGL");
             new KettleJobCreator().createKettleJob("FXC");*/
-    }
-    public static void main(String[] args) throws SQLException, IOException {
+    /*}*/
+    /*public static void main(String[] args) throws SQLException, IOException {
     	new KettleJobCreator().oracleKettle();
-    }
+    }*/
    
 }
