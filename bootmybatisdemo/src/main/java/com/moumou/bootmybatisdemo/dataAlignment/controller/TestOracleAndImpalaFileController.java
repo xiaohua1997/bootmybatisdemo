@@ -76,4 +76,19 @@ public class TestOracleAndImpalaFileController {
 		}
 		return new JsonResult(map);
 	}
+	
+	@RequestMapping(value="/oraclekettle",method = RequestMethod.GET)
+	public JsonResult oracleKettle() {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		String s = testOracleAndImpalaFileService.oracleKettle();
+		if("success".equals(s)) {
+			map.put("status", "success");
+			map.put("msg", "生成oracle的kettle作业完成");
+		}else {
+			map.put("status", "false");
+	        map.put("msg", "生成失败"); 
+		}
+		return new JsonResult(map);
+	}
 }

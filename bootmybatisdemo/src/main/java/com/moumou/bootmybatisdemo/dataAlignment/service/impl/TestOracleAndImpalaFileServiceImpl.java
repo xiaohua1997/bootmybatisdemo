@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Service;
 
 import com.moumou.bootmybatisdemo.dataAlignment.service.TestOracleAndImpalaFileService;
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.ext.kettle.KettleJobCreator;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.TestOracleAndImpalaFile;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.ScheduleJobs;
 @Service
@@ -14,6 +15,7 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 
 	private TestOracleAndImpalaFile testOracleAndImpalaFile = new TestOracleAndImpalaFile();
 	private ScheduleJobs aScheduleJobs = new ScheduleJobs();
+	private KettleJobCreator kettleJobCreator = new KettleJobCreator();
 
 	@Override
 	public String oracleFileDdl() {
@@ -71,6 +73,21 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 			e.printStackTrace();
 			return "false";
 		}
+	}
+
+	@Override
+	public String oracleKettle() {
+		try {
+			kettleJobCreator.oracleKettle();
+			return "success";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "false";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "false";
+		}
+		
 	}
 
 }
