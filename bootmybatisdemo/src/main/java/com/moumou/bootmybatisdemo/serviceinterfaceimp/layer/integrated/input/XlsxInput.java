@@ -52,9 +52,7 @@ public class XlsxInput {
             ON条件 ★
      */
 	
-	
-	
-    public static void main(String[] args) {
+    public  void hive() {
         //指定本地SVN副本根目录
         String rootPath = "F:\\ProjectCode\\WKZQ_SVN2";
         int startRow = 1;
