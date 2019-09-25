@@ -81,8 +81,8 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 
 	@Override
 	public String oracleKettle() {
+		
 		List<String> s = srcSystemMapper.querySys();
-    	
     		try {
     			for(String sys:s) {
 				new KettleJobCreator().createKettleJob(sys);
@@ -95,13 +95,6 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 				e.printStackTrace();
 				return "false";
 			}
-    	
-		/*
-		 * try { kettleJobCreator.oracleKettle(); return "success"; } catch
-		 * (SQLException e) { e.printStackTrace(); return "false"; } catch (IOException
-		 * e) { e.printStackTrace(); return "false"; }
-		 */
-		
 	}
 
 }
