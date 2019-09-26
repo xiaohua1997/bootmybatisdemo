@@ -28,7 +28,7 @@ public class HiveController {
 	public JsonResult hives() {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s = hiveService.hive();
+		String s = hiveService.hives();
 		if("success".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "生成所有hive脚本和建表语句完成"); 
