@@ -18,14 +18,13 @@ public class EnterMetaMenuController {
 	
 	@Autowired
 	private EnterMetaMenuService enterMetaMenuService;
-	
+
 	@ApiOperation("同步所有：src_column")
 	@RequestMapping(value = "/synallsystem",method = RequestMethod.GET)
 	public JsonResult synAllSystem() {
 		System.out.println("synAllSystem");
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s;
-		s=enterMetaMenuService.synAllSystem();
+		String s = enterMetaMenuService.synAllSystem();
 		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新所有系统完成");
@@ -42,8 +41,8 @@ public class EnterMetaMenuController {
 		System.out.println("synSystem");
 		System.out.println(srcTable);
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s,sys=srcTable.getSys();
-		s=enterMetaMenuService.synSystem(sys);
+		String sys = srcTable.getSys();
+		String s = enterMetaMenuService.synSystem(sys);
 		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新" + sys + "完成");
@@ -60,8 +59,10 @@ public class EnterMetaMenuController {
 		System.out.println("synSchema");
 		System.out.println(srcTable);
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema();
-		s=enterMetaMenuService.synSchema(sys, sid, schema);
+		String sys = srcTable.getSys();
+		String sid = srcTable.getDbSid();
+		String schema = srcTable.getTableSchema();
+		String s = enterMetaMenuService.synSchema(sys, sid, schema);
 		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "完成");
@@ -78,8 +79,11 @@ public class EnterMetaMenuController {
 		System.out.println("synTable");
 		System.out.println(srcTable);
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s,sys=srcTable.getSys(),sid=srcTable.getDbSid(), schema=srcTable.getTableSchema(),tableName=srcTable.getTableName();
-		s=enterMetaMenuService.synTable(srcTable);
+		String sys = srcTable.getSys();
+		String sid = srcTable.getDbSid();
+		String schema = srcTable.getTableSchema();
+		String tableName = srcTable.getTableName();
+		String s = enterMetaMenuService.synTable(srcTable);
 		if("true".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "-" + tableName + "完成");
