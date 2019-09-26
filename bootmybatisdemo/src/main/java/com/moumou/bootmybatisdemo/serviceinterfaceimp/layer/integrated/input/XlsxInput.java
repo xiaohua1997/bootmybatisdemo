@@ -1,5 +1,6 @@
 package com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.input;
 
+import com.moumou.bootmybatisdemo.dataAlignment.model.Hive;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.common.StringExtension;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.output.HiveCreateImlTableOutput;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.output.HiveScriptOutput;
@@ -52,9 +53,21 @@ public class XlsxInput {
             ON条件 ★
      */
 	
-    public  void hive() {
+	public void aHive(Hive hive) {
+		//指定本地SVN副本根目录
+		String rootPath = "C:\\User\\Administrator\\Desktop\\五矿svn";
+		int startRow = 1;
+		String yewu = hive.getYewu();
+		String mapping = hive.getMapping();
+		
+		XlsxInput.createHiveScript(rootPath
+                + "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\"+yewu
+                , mapping, startRow);
+	}
+	
+    public void hives() {
         //指定本地SVN副本根目录
-        String rootPath = "F:\\ProjectCode\\WKZQ_SVN2";
+        String rootPath = "C:\\Users\\Administrator\\Desktop\\五矿svn";
         int startRow = 1;
         //品种
         XlsxInput.createHiveScript(rootPath
