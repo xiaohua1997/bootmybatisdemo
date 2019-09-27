@@ -25,6 +25,7 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 	public String oracleFileDdl() {
 		try {
 			testOracleAndImpalaFile.oracleFile();
+			System.out.println("OK");
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();

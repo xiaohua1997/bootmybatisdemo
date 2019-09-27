@@ -96,8 +96,9 @@ public class KettleJobCreator {
             }
             createKettleJob(srcSys, tab);
             tmp_cnt++;
-            System.out.println("[INFO]:完成" + sysCode + " 作业：" + tmp_cnt + "/" + job_cnt);
+//            System.out.println("[INFO]:完成" + sysCode + " 作业：" + tmp_cnt + "/" + job_cnt);
         }
+        System.out.println("[INFO]:完成" + sysCode + " 作业");
         return ret;
     }
     /**
