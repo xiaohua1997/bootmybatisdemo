@@ -80,7 +80,7 @@ public class PoiHelper {
     public static String cellValueToString(Cell cell) {
         String result = "";
 
-        switch (cell.getCellType().name()) {
+        switch (cell.getCellTypeEnum().name()) {
             case "NUMERIC":
                 result = cell.getNumericCellValue() + "";
                 break;
