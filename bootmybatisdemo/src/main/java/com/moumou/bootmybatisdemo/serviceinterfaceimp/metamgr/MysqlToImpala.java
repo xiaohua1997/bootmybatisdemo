@@ -49,7 +49,7 @@ public class MysqlToImpala {
     //循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
     public void sqlCreateFile() {
         String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         //MysqlToImpala mysqlToImpala = new MysqlToImpala();
@@ -73,7 +73,7 @@ public class MysqlToImpala {
     //循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
     public void sqlSelectFile() {
         String sqlString = "select sys, db_sid, db_schema from src_system";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         //MysqlToImpala mysqlToImpala = new MysqlToImpala();
@@ -201,7 +201,7 @@ public class MysqlToImpala {
     public HashMap<String, String> getConvertTable() {
         HashMap<String, String> tableConvert = new HashMap<String, String>();
         String sqlString = "SELECT * from src_tablename_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -226,7 +226,7 @@ public class MysqlToImpala {
     public HashMap<String, String> getConvertColumn() {
         HashMap<String, String> columnConvert = new HashMap<String, String>();
         String sqlString = "SELECT * from etl_column_convert";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -253,7 +253,7 @@ public class MysqlToImpala {
     public HashMap<String, String> getSys() {
         HashMap<String, String> sysConvert = new HashMap<String, String>();
         String sqlString = "SELECT sys,sys_num,db_type,db_sid,db_schema from src_system";
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         try {
@@ -282,7 +282,7 @@ public class MysqlToImpala {
         HashMap<String, String> sysConvert = getSys();
         HashMap<String, List<ColumnDescInfo>> StringAndListColumnDescInfoMap = new HashMap<String, List<ColumnDescInfo>>();
         List<TableInfo> tableInfos = new ArrayList<>();
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         ResultSet resultSet = null;
         HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -477,7 +477,7 @@ public class MysqlToImpala {
         ResultSet resultSet = null;
         ResultSet resultSet1 = null;
         List<String> list = new ArrayList<String>();
-        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edwassisdb", "mysql");
+        JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlString);

@@ -20,7 +20,7 @@ public class SourceTableDateOffsetDao {
 	private List<SourceTableDateOffset> getList(String sql) {
 		ResultSet resultSet = null;
 		List<SourceTableDateOffset> list = new ArrayList<SourceTableDateOffset>();
-		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edwassisdb","mysql");
+		JdbcConnection jdbcConn = new JdbcConnection("edw","edw123456","192.10.30.15","3306","edw_dev","mysql");
 		Connection connection = jdbcConn.getDbConnection();
 		if (connection == null) {
 			return null;
