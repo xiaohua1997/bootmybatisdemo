@@ -25,7 +25,7 @@ public interface EtlColumnConvertMapper {
             "src_column=#{srcColumn}, \n" +
             "tgt_column=#{tgtColumn}, \n" +
             "table_name=#{tableName}, \n" +
-            "sys=#{sys}, \n" +
+            "sys=#{sys} \n" +
             "WHERE \n" +
             "src_column=#{srcColumn} and \n" +
             "tgt_column=#{tgtColumn} and \n" +
@@ -38,13 +38,13 @@ public interface EtlColumnConvertMapper {
             "src_column,\n" +
             "tgt_column,\n" +
             "table_name,\n" +
-            "sys,\n" +
+            "sys \n" +
             ")\n" +
             "values(\n" +
             "#{srcColumn},\n" +
             "#{tgtColumn},\n" +
             "#{tableName},\n" +
-            "#{sys},\n" +
+            "#{sys} \n" +
             ")")
     int addEtlColumnCon(EtlColumnConvert etlColumnConvert);
 

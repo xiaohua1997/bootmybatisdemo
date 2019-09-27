@@ -24,7 +24,7 @@ public interface SrcTableNameConvertMapper {
             "src_table_name=#{srcTableName}, \n" +
             "tgt_table_name=#{tgtTableName}, \n" +
             "sys=#{sys}, \n" +
-            "remark=#{remark}, \n" +
+            "remark=#{remark} \n" +
             "WHERE \n" +
             "src_table_name=#{srcTableName} and \n" +
             "tgt_table_name=#{tgtTableName} and \n" +
@@ -36,13 +36,13 @@ public interface SrcTableNameConvertMapper {
             "src_table_name,\n" +
             "tgt_table_name,\n" +
             "sys,\n" +
-            "remark,\n" +
+            "remark \n" +
             ")\n" +
             "values(\n" +
             "#{srcTableName},\n" +
             "#{tgtTableName},\n" +
             "#{sys},\n" +
-            "#{remark},\n" +
+            "#{remark} \n" +
             ")")
     int addSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 	

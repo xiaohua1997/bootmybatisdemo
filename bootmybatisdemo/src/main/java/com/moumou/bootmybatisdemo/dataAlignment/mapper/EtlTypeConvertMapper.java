@@ -52,7 +52,7 @@ public interface EtlTypeConvertMapper {
             "tgt_column_length,\n" +
             "tgt_column_default,\n" +
             "tgt_column_format,\n" +
-            "convert_mode,\n" +
+            "convert_mode \n" +
             ")\n" +
             "values(\n" +
             "#{srcDbType},\n" +
@@ -63,7 +63,7 @@ public interface EtlTypeConvertMapper {
             "#{tgtColumnLength},\n" +
             "#{tgtColumnDefault},\n" +
             "#{tgtColumnFormat},\n" +
-            "#{convertMode},\n" +
+            "#{convertMode} \n" +
             ")")
     int addEtlConvert(EtlTypeConvert etlTypeConvert);
 	
