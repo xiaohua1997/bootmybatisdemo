@@ -8,7 +8,7 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.input.Xls
 @Service
 public class HiveServiceImpl implements HiveService{
 	
-    private XlsxInput xlsxInput  = new XlsxInput();
+    XlsxInput xlsxInput  = new XlsxInput();
 	@Override
 	public String hives() {
 		
