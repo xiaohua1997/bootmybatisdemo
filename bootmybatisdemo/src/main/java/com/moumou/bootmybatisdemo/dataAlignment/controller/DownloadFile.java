@@ -17,7 +17,7 @@ public class DownloadFile {
 	
 	@RequestMapping("/downloadFile")
 	private String downloadFile(HttpServletResponse response) {
-		 String downloadFilePath = "C:\\Users\\Administrator\\Desktop\\kettle作业zip\\kettle_project";//被下载的文件在服务器中的路径,
+		 String downloadFilePath = "C:\\Users\\Administrator\\Desktop\\kettle作业zip\\kettle_project\\kettle_project.zip";//被下载的文件在服务器中的路径,
          String fileName = "kettle_project.zip";//被下载文件的名称
          
          File file = new File(downloadFilePath);
