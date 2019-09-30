@@ -67,29 +67,29 @@ public class XlsxInput {
 	
     public void hives() {
         //指定本地SVN副本根目录
-        String rootPath = "C:\\Users\\Administrator\\Desktop\\五矿svn";
+        String rootPath = "C:\\Users\\Administrator\\Desktop\\workbench\\projdoc_edw2";
         int startRow = 1;
         //品种
         XlsxInput.createHiveScript(rootPath
-                + "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\产品mapping.xlsx"
+                + "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\品种mapping.xlsx"
                 , "股票", startRow);
         XlsxInput.createHiveScript(rootPath
-                + "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\产品mapping.xlsx"
+                + "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\品种mapping.xlsx"
                 , "基金", startRow);
         XlsxInput.createHiveScript(rootPath +
-                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\产品mapping.xlsx"
+                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\品种mapping.xlsx"
                 , "债券", startRow);
         XlsxInput.createHiveScript(rootPath +
-                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\期货mapping.xlsx"
+                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\期货mapping.xlsx"
                 , "期货", startRow);
         XlsxInput.createHiveScript(rootPath +
-                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\期权mapping.xlsx"
+                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\期权mapping.xlsx"
                 , "Sheet3", startRow);
         XlsxInput.createHiveScript(rootPath +
-                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\其他类mapping.xlsx"
+                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\其他类mapping.xlsx"
                 , "其他类mapping", startRow);
         XlsxInput.createHiveScript(rootPath +
-                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 产品\\产品mapping\\融资类 产品mapping.xlsx"
+                "\\02 项目实施\\0203 模型设计\\020303 逻辑模型设计\\02 品种\\品种mapping\\融资类 产品mapping.xlsx"
                 , "融资类", startRow);
         //主体
         XlsxInput.createHiveScript(rootPath +
