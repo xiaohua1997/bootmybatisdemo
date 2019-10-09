@@ -29,7 +29,7 @@ public class DownloadFile {
         	 FileInputStream fis = null;
         	 BufferedInputStream bis = null;
         	 try {
-        		 fis = new FileInputStream(file);
+        		 fis = new FileInputStream(file);  
         		 bis = new BufferedInputStream(fis);
         		 OutputStream outputStream = response.getOutputStream();
         		 int i = bis.read(buffer);
