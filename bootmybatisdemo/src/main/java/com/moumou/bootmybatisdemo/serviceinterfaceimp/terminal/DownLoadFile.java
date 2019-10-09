@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DownLoadFile {
 	
-	public String downloadFile(HttpServletResponse response,String downloadFilePath,String fileName) {
+	public boolean downloadFile(HttpServletResponse response,String downloadFilePath,String fileName) {
 //		 String downloadFilePath = "C:\\Users\\Administrator\\Desktop\\sqoop_project\\sqoop_project.zip";//被下载的文件在服务器中的路径,
 //        String fileName = "sqoop_project.zip";//被下载文件的名称
         
+		boolean flag = false;
         File file = new File(downloadFilePath);
         if(file.exists()) {
        	 response.setContentType("application/force-download");// 设置强制下载不打开
@@ -31,7 +32,7 @@ public class DownLoadFile {
                     outputStream.write(buffer, 0, i);
                     i = bis.read(buffer);
                 }
-       		 return "下载成功";
+       		flag = true;
        	 } catch (Exception e) {
                 e.printStackTrace();
             }finally {
@@ -51,6 +52,6 @@ public class DownLoadFile {
                 }
             }
         }
-       return "下载失败"; 
+       return flag; 
 	}
 }

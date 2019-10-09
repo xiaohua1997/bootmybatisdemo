@@ -14,6 +14,9 @@ import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class FileToZip {
 
 	private static final int BUFFER_SIZE = 2 * 1024;
