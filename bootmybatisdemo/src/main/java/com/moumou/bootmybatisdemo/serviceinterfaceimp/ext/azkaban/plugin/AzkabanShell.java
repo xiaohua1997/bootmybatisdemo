@@ -2,6 +2,7 @@ package com.moumou.bootmybatisdemo.serviceinterfaceimp.ext.azkaban.plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
@@ -93,6 +94,13 @@ public class AzkabanShell {
 		
 		File file = new File(TARGET_DIR + "/" + "call_" + sys + "_" + dbSid + "_" + dbSchema + "_to_impala.sh");
 		FileUtils.writeStringToFile(file, shellContent, "UTF-8");
+
+		// 添加Azkaban依赖扩展包配置文件
+		String extendConf = URLDecoder.decode(AzkabanShell.class.getClassLoader().getResource("azkaban_extend.conf").getPath()
+				, "UTF-8");
+		File fextendConf = new File(extendConf);
+		File fDir = new File(TARGET_DIR);
+		FileUtils.copyFileToDirectory(fextendConf, fDir, true);
 	}
 
 	public void generateDbCheck(String target_dir) throws IOException {
@@ -108,5 +116,21 @@ public class AzkabanShell {
 		
 		FileUtils.copyFileToDirectory(fShell, fDir, true);
 		FileUtils.copyFileToDirectory(fConf, fDir, true);
+	}
+
+	public void generateHiveShell(String target_dir) throws IOException {
+		File fDir = new File(target_dir);
+
+		// 添加Azkaban依赖扩展包配置文件
+		String extendConf = URLDecoder.decode(AzkabanShell.class.getClassLoader().getResource("azkaban_extend.conf").getPath()
+				, "UTF-8");
+		File fextendConf = new File(extendConf);
+		FileUtils.copyFileToDirectory(fextendConf, fDir, true);
+
+		// 添加call_hive.sh文件
+		String shellPath = URLDecoder.decode(AzkabanShell.class.getClassLoader().getResource("call_hive.sh").getPath()
+				, "UTF-8");
+		File fShell = new File(shellPath);
+		FileUtils.copyFileToDirectory(fShell, fDir, true);
 	}
 }

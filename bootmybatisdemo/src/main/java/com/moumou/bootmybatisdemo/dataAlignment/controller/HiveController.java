@@ -58,4 +58,21 @@ public class HiveController {
 		}
 		return new JsonResult(map);
     }
+    
+    /*
+           * 生成hive的job作业和azkaban调度文件
+     */
+    @RequestMapping(value="/hivejob",method = RequestMethod.GET)
+    public  JsonResult hiveJob() {
+    	Map<String,Object> map = new HashMap<String,Object>();
+    	String s = hiveService.hiveJob();
+    	if("success".equals(s)) {
+			map.put("status", "success");
+	        map.put("msg", "生成hive的job作业和azkaban调度文件"); 
+		}else {
+			map.put("status", "false");
+	        map.put("msg", "生成失败"); 
+		}
+		return new JsonResult(map);
+    }
 }

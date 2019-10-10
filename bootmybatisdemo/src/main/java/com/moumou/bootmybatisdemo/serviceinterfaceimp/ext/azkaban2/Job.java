@@ -14,7 +14,9 @@ public abstract class Job {
 	public static final String CHARSET_NAME = "UTF-8";
 	public static final String RETRIES = "3";             //作业重试次数
 	public static final String RETRY_BACKOFF = "300000"; //重试间隔（毫秒）
-	
+	private static int CHECK_INTERVAL_MINUTES = 5;        //依赖作业检查间隔（分钟）
+	private static long CHECK_MAX_LOOP = 12 * 24;         //依赖作业检查次数
+
 	protected String target_dir;
 	protected String defaultFlowName;
 	
@@ -45,22 +47,22 @@ public abstract class Job {
 		return createNew;
 	}
 
-	public boolean createFlowFile(boolean overwrite) throws IOException {
-		return this.createFlowFile(overwrite, this.defaultFlowName);
+	public boolean createFlowFile(boolean overwrite, boolean checkDependencies) throws IOException {
+		return this.createFlowFile(overwrite, this.defaultFlowName, checkDependencies);
 	}
 
-	public boolean createFlowFile(boolean overwrite, String flowName) throws IOException {
+	public boolean createFlowFile(boolean overwrite, String flowName, boolean checkDependencies) throws IOException {
 		boolean createNew = true;
 		
 		if(overwrite) {
-			this.initFlowFileHeadContent(flowName);
+			this.initFlowFileHeadContent(flowName, checkDependencies);
 			createNew = true;
 		} else {
 			File file = new File(this.target_dir + File.separator + flowName + ".flow");
 			if(file.exists()) {
 				createNew = false;
 			} else {
-				this.initFlowFileHeadContent(flowName);
+				this.initFlowFileHeadContent(flowName, checkDependencies);
 				createNew = true;
 			}
 		}
@@ -76,12 +78,20 @@ public abstract class Job {
 		FileUtils.writeStringToFile(file, sb.toString(), CHARSET_NAME);
 	}
 	
-	private void initFlowFileHeadContent(String flowName) throws IOException {
+	private void initFlowFileHeadContent(String flowName, boolean checkDependencies) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		sb.append("---").append(EOL);
 		sb.append("config:").append(EOL);
 		sb.append("  retries: ").append(RETRIES).append(EOL);
 		sb.append("  retry.backoff: ").append(RETRY_BACKOFF).append(EOL);
+
+		//如果该流的作业需要用到跨流依赖
+		if(checkDependencies) {
+			sb.append("  check: C").append(EOL);
+			sb.append("  check_interval_minutes: ").append(CHECK_INTERVAL_MINUTES).append(EOL);
+			sb.append("  check_max_loop: ").append(CHECK_MAX_LOOP).append(EOL);
+		}
+
 		sb.append(EOL);
 		sb.append("nodes:").append(EOL);
 		

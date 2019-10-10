@@ -6,5 +6,6 @@ public interface HiveService {
 	
 	String hives();
 	String aHive(Hive hive);
+	String hiveJob();
 
 }
