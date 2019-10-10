@@ -1,22 +1,36 @@
 package com.moumou.bootmybatisdemo.dataAlignment.model;
 
+import com.moumou.bootmybatisdemo.util.ExcelColumn;
+
 public class SrcColumn {
+	
+	@ExcelColumn("sys")
     private String sys;
+	@ExcelColumn("dbSid")
     private String dbSid;
+	@ExcelColumn("dbSchema")
     private String dbSchema;
+	@ExcelColumn("tableName")
     private String tableName;
+	@ExcelColumn("columnId")
     private String columnId;
+	@ExcelColumn("columnName")
     private String columnName;
+	@ExcelColumn("columnType")
     private String columnType;
+	@ExcelColumn("columnCnName")
     private String columnCnName;
+	@ExcelColumn("isPk")
     private String isPk;
+	@ExcelColumn("notNull")
     private String notNull;
+	@ExcelColumn("defaultValue")
     private String defaultValue;
+	@ExcelColumn("isDk")
     private String isDk;
+	@ExcelColumn("breakFlag")
     private String breakFlag;
 
-    
-    
     public SrcColumn() {
 		super();
 	}

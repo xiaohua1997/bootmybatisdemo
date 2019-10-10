@@ -1,9 +1,16 @@
 package com.moumou.bootmybatisdemo.dataAlignment.model;
 
+import com.moumou.bootmybatisdemo.util.ExcelColumn;
+
 public class SrcTableNameConvert {
+	
+	@ExcelColumn("srcTableName")
 	private String srcTableName;
+	@ExcelColumn("tgtTableName")
 	private String tgtTableName;
+	@ExcelColumn("sys")
 	private String sys;
+	@ExcelColumn("remark")
 	private String remark;
 	
 	

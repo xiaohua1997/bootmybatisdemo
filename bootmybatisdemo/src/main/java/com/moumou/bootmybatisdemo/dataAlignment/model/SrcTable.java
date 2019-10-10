@@ -1,19 +1,31 @@
 package com.moumou.bootmybatisdemo.dataAlignment.model;
 
+import com.moumou.bootmybatisdemo.util.ExcelColumn;
+
 public class SrcTable {
+	
+	@ExcelColumn("sys")
     private String sys;
+	@ExcelColumn("dbSid")
     private String dbSid;
+	@ExcelColumn("tableSchema")
     private String tableSchema;
+	@ExcelColumn("tableName")
     private String tableName;
+	@ExcelColumn("tableCnName")
     private String tableCnName;
+	@ExcelColumn("incCdt")
     private String incCdt;
+	@ExcelColumn("ifMark")
     private String ifMark;
+	@ExcelColumn("tableType")
     private String tableType;
+	@ExcelColumn("templateCode")
     private String templateCode;
+	@ExcelColumn("isPutToEtldb")
     private String isPutToEtldb;
 
-    
-    
+	
     public SrcTable() {
 		super();
 	}

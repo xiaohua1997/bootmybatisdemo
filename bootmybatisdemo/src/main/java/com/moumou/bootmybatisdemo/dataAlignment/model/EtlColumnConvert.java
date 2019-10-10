@@ -1,9 +1,16 @@
 package com.moumou.bootmybatisdemo.dataAlignment.model;
 
+import com.moumou.bootmybatisdemo.util.ExcelColumn;
+
 public class EtlColumnConvert {
+	
+	@ExcelColumn("srcColumn")
 	private String srcColumn;
+	@ExcelColumn("tgtColumn")
 	private String tgtColumn;
+	@ExcelColumn("tableName")
 	private String tableName;
+	@ExcelColumn("sys")
 	private String sys;
 	
 	
