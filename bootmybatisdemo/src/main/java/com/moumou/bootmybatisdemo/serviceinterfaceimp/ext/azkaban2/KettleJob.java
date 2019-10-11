@@ -70,7 +70,7 @@ public class KettleJob extends Job {
 			String flowName = sys + "_" + ifMark;
 			// 确定flowName拼写风格
 			flowName = StringExtension.toStyleString(flowName);
-			this.createFlowFile(false, flowName);
+			this.createFlowFile(false, flowName, false);
 			// sub-flow定义
 			String subFlowName = jobName.replace(KettleJob.PREFIX, "");
 			// 确定subFlowName拼写风格

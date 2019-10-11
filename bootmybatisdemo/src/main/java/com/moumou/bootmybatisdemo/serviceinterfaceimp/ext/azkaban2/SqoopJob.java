@@ -100,7 +100,7 @@ public class SqoopJob extends Job {
 			// 确定flowName拼写风格
 			flowName = StringExtension.toStyleString(flowName);
 
-			this.createFlowFile(false, flowName);
+			this.createFlowFile(false, flowName, false);
 
 			// sub-flow定义
 			String subFlowName = jobName.replace(SqoopJob.JOB_PREFIX, "");

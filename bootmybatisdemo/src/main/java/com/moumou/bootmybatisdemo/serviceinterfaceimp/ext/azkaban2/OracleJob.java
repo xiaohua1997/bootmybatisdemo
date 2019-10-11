@@ -19,7 +19,7 @@ public class OracleJob extends Job {
 	public List<String> appendJobsToFlowFile(List<SourceTable> lstTable, HashMap<String, String> schemaNumMap,
 			HashMap<String, String> tableNameConvertMap) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false);
+		this.createFlowFile(false, false);
 		
 		//java -jar ./OracleExecuter.jar 20190416 ./sql/bbb.sql
 		List<String> lstJobResult = new ArrayList<String>();
@@ -44,7 +44,7 @@ public class OracleJob extends Job {
 
 			// 确定该Job所属的Flow文件的名称
 			String flowName = sys + "_" + ifMark;
-			this.createFlowFile(false, flowName);
+			this.createFlowFile(false, flowName, false);
 			// TODO 后续确定该方法是否还需要保留
 			//String subFlowName = jobName.replace(KettleJob.PREFIX, "");
 
