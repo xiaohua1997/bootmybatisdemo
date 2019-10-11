@@ -55,7 +55,7 @@ public class XlsxInput {
 	
 	public void aHive(Hive hive) {
 		//指定本地SVN副本根目录
-		String rootPath = "C:\\User\\Administrator\\Desktop\\五矿svn";
+		String rootPath = "C:\\Users\\Administrator\\Desktop\\workbench\\projdoc_edw2";
 		int startRow = 1;
 		String yewu = hive.getYewu();
 		String mapping = hive.getMapping();
