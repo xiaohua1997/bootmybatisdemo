@@ -24,6 +24,17 @@ public class Test {
 	public EnterMetaMenuService enterMetaMenuService;
 	
 	@ApiOperation("同步所有：src_column")
+	@RequestMapping(value = "/mytest",method = RequestMethod.GET)
+	public @ResponseBody JsonResult myTest() {
+		SrcTable srcTable = new SrcTable();
+		srcTable.setSys("");
+		srcTable.setDbSid("");
+		srcTable.setTableSchema("");
+		srcTable.setTableName("");
+		return srcColumn(srcTable);
+	}
+	
+	@ApiOperation("同步所有：src_column")
 	@RequestMapping(value="/srccolumn",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
 	public @ResponseBody JsonResult srcColumn(@RequestBody SrcTable srcTable) {
 		Map<String,Object> map = new HashMap<String,Object>();
