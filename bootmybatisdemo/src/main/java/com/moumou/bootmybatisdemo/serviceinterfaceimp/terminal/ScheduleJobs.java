@@ -24,6 +24,8 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.ext.azkaban2.OracleJob;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.ext.azkaban2.SqoopJob;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.SrcdbToTgtdb;
 
+import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.ScheduleJobs;
+
 public class ScheduleJobs {
 	/***
 	 * 生成所有调度作业
@@ -220,7 +222,7 @@ public class ScheduleJobs {
 		System.out.println("JobDateOffset OK");
 		//生成运行日期黑名单
 		BatchDateBlackList aBatchDateBlackList = new BatchDateBlackList();
-		String start_dt = "20190101";
+		String start_dt = "20180101";
 		String end_dt = "20291231";
 		aBatchDateBlackList.generate(dir, start_dt, end_dt, true);
 		System.out.println("BatchDateBlackList OK");

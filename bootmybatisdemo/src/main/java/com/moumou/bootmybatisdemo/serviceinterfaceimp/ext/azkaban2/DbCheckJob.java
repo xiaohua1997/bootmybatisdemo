@@ -49,7 +49,7 @@ public class DbCheckJob extends Job{
 
 	public void append_JZJY_run_dbo(String flowName) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false, flowName);
+		this.createFlowFile(false, flowName, false);
 		
 		String jobType = "command";
 		
@@ -67,7 +67,7 @@ public class DbCheckJob extends Job{
 	
 	public void append_RZRQ_run_dbo(String flowName) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false, flowName);
+		this.createFlowFile(false, flowName, false);
 		
 		String jobType = "command";
 		
@@ -85,7 +85,7 @@ public class DbCheckJob extends Job{
 
 	public void append_GPQQ_kbssoptsett_dbo(String flowName) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false, flowName);
+		this.createFlowFile(false, flowName, false);
 
 		String jobType = "command";
 
@@ -103,7 +103,7 @@ public class DbCheckJob extends Job{
 
 	public void append_TYZH_kbssacct_dbo(String flowName) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false, flowName);
+		this.createFlowFile(false, flowName, false);
 
 		String jobType = "command";
 
@@ -121,7 +121,7 @@ public class DbCheckJob extends Job{
 
 	public void append_ZJGL_kbssfms_dbo(String flowName) throws IOException {
 		this.createProjectFile(false);
-		this.createFlowFile(false, flowName);
+		this.createFlowFile(false, flowName, false);
 
 		String jobType = "command";
 
