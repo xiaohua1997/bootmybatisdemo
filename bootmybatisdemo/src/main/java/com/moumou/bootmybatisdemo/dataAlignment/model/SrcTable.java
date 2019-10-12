@@ -24,14 +24,18 @@ public class SrcTable {
     private String templateCode;
 	@ExcelColumn("isPutToEtldb")
     private String isPutToEtldb;
-
+	
+	private String level; //level 目前可能存在如下几种传入值：all，ods，ods_m（仅限oracle），chk
+	private String scheduleSystem; //scheduleSystem 目前可能存在如下几种传入值：azkaban
+	private String dbtype; //dbtype 目前可能存在如下几种传入值：impala，oracle
 	
     public SrcTable() {
 		super();
 	}
 
 	public SrcTable(String sys, String dbSid, String tableSchema, String tableName, String tableCnName, String incCdt,
-			String ifMark, String tableType, String templateCode, String isPutToEtldb) {
+			String ifMark, String tableType, String templateCode, String isPutToEtldb, String level,
+			String scheduleSystem, String dbtype) {
 		super();
 		this.sys = sys;
 		this.dbSid = dbSid;
@@ -43,7 +47,38 @@ public class SrcTable {
 		this.tableType = tableType;
 		this.templateCode = templateCode;
 		this.isPutToEtldb = isPutToEtldb;
+		this.level = level;
+		this.scheduleSystem = scheduleSystem;
+		this.dbtype = dbtype;
 	}
+
+
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getScheduleSystem() {
+		return scheduleSystem;
+	}
+
+	public void setScheduleSystem(String scheduleSystem) {
+		this.scheduleSystem = scheduleSystem;
+	}
+
+	public String getDbtype() {
+		return dbtype;
+	}
+
+	public void setDbtype(String dbtype) {
+		this.dbtype = dbtype;
+	}
+
+	
 
 	public String getSys() {
         return sys;

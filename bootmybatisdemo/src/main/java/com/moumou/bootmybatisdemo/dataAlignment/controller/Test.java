@@ -70,13 +70,31 @@ public class Test {
 				map.put("msg", "更新失败");
 			}
 		}else if(!"".equals(sys) && !"".equals(sid) && !"".equals(schema) && !"".equals(tableName)) {
-			String s = enterMetaMenuService.synTable(srcTable);
-			if("true".equals(s)) {
+			boolean f = enterMetaMenuService.judgeTable(srcTable);
+			if(f) {
 				map.put("status", "success");
-		        map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "-" + tableName + "完成");
+		        map.put("msg", "表已存在");
+		        String s = enterMetaMenuService.synTable(srcTable);
+		        if("true".equals(s)) {
+		        	map.put("status", "success");
+		        	map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "-" + tableName + "完成");
+		        } else {
+		        	map.put("status", "error");
+		        	map.put("msg", "更新失败");
+		        }
 			} else {
-				map.put("status", "error");
-				map.put("msg", "更新失败");
+				if("".equals(srcTable.getIfMark())) {
+					map.put("status", "error");
+					map.put("msg", "表不存在，新表");
+				}
+				String s = enterMetaMenuService.synTable(srcTable);
+				if("true".equals(s)) {
+		        	map.put("status", "success");
+		        	map.put("msg", "更新"+ sys + "-" + sid + "-" + schema + "-" + tableName + "完成");
+		        } else {
+		        	map.put("status", "error");
+		        	map.put("msg", "更新失败");
+		        }
 			}
 		}
 		

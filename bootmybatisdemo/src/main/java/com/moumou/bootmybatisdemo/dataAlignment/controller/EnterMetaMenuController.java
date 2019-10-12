@@ -95,6 +95,9 @@ public class EnterMetaMenuController {
 //		return enterMetaMenuService.synTable(srcTable);
 	}
 	
+	/*
+	 * 检查库里是否已存在这张
+	 */
 	@RequestMapping(value = "/judgeTable", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
 	public @ResponseBody JsonResult judgeTable (@RequestBody SrcTable srcTable){
 		System.out.println("judgeTable");
