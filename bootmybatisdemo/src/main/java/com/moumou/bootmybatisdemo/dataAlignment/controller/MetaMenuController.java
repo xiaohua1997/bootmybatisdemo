@@ -17,8 +17,8 @@ import com.moumou.bootmybatisdemo.util.JsonResult;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/test")
-public class Test {
+@RequestMapping("/metamenu")
+public class MetaMenuController {
 	
 	@Autowired
 	public EnterMetaMenuService enterMetaMenuService;
