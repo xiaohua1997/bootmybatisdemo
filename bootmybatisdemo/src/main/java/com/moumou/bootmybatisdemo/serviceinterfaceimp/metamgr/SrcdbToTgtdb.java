@@ -91,9 +91,9 @@ public class SrcdbToTgtdb {
     }
 
     /**
-     * 生成所有的快照表（m表）DDL文件
+     * 生成所有的快照表（m表）DDL文件（全部ddl文件）
      */
-    public void generateDDL_Snapshot() {
+    public void generateDDL_Snapshot(String level) {
 
     	 // 调整代码增加 查询源表的数据库类型 20190809 by cm
     	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
@@ -117,7 +117,7 @@ public class SrcdbToTgtdb {
                 // 调整代码增加 查询源表的数据库类型 20190809 by cm
                 //this.createTableToday("mysql", srctypeString1, tgttypeString1);
                 String srcDbType = resultSet.getString(4);
-                this.createTableToday(srcDbType, srctypeString1, tgttypeString1);
+                this.createTableTodayAll(srcDbType, srctypeString1, tgttypeString1);
                 
                 //srcdbToTgtdb.createTableToday("mysql",srctypeString1, tgttypeString1);
                 //srcdbToTgtdb.createTableTodayInOneFile("mysql",srctypeString1, tgttypeString1);
@@ -130,11 +130,136 @@ public class SrcdbToTgtdb {
             jdbcConn.closeDbConnection();
         }
     }
+    
+    /**
+     * 生成所有的快照表（m表）DDL文件（按系统生成ddl文件）
+     */
+    public void generateDDL_Snapshot(String level,String sys) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid from src_column WHERE sys='"+sys+"' GROUP BY sys,db_schema,db_sid ) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableToday("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(4);
+    			this.createTableToday(srcDbType, srctypeString1, tgttypeString1);
+    			
+    			//srcdbToTgtdb.createTableToday("mysql",srctypeString1, tgttypeString1);
+    			//srcdbToTgtdb.createTableTodayInOneFile("mysql",srctypeString1, tgttypeString1);
+    			
+    		}
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    /**
+     * 生成所有的快照表（m表）DDL文件（按schema生成ddl文件）
+     */
+    public void generateDDL_Snapshot(String level, String sys, String sid, String schema) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' GROUP BY sys,db_schema,db_sid ) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String dbsidString1 = resultSet.getString(3);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableToday("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(4);
+    			this.createTableToday(srcDbType, srctypeString1, tgttypeString1,dbsidString1);
+    			
+    			//srcdbToTgtdb.createTableToday("mysql",srctypeString1, tgttypeString1);
+    			//srcdbToTgtdb.createTableTodayInOneFile("mysql",srctypeString1, tgttypeString1);
+    			
+    		}
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    /**
+     * 生成所有的快照表（m表）DDL文件（按表名生成ddl文件）
+     */
+    public void generateDDL_Snapshot(String level, String sys, String sid, String schema, String tableName) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t1.table_name,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid,table_name from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' and table_name='"+tableName+"' GROUP BY sys,db_schema,db_sid,table_name) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String sidtypeString1 = resultSet.getString(3);
+    			String tabletypeString1 = resultSet.getString(4);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableToday("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(5);
+    			this.createTableToday(srcDbType, srctypeString1, tgttypeString1,sidtypeString1,tabletypeString1);
+    			
+    			//srcdbToTgtdb.createTableToday("mysql",srctypeString1, tgttypeString1);
+    			//srcdbToTgtdb.createTableTodayInOneFile("mysql",srctypeString1, tgttypeString1);
+    			
+    		}
+    		System.out.println();
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
 
     /**
-     * 生成所有的分区表DDL文件
+     * 生成所有的分区表DDL文件(全部ddl文件)
      */
-    public void generateDDL_Partition() {
+    public void generateDDL_Partition(String level) {
 
    	 // 调整代码增加 查询源表的数据库类型 20190809 by cm
    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
@@ -158,7 +283,7 @@ public class SrcdbToTgtdb {
                 // 调整代码增加 查询源表的数据库类型 20190809 by cm
                 //this.createTableHistory("mysql", srctypeString1, tgttypeString1);
                 String srcDbType = resultSet.getString(4);
-                this.createTableHistory(srcDbType, srctypeString1, tgttypeString1);
+                this.createTableHistoryAll(srcDbType, srctypeString1, tgttypeString1);
             }
             //srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
         } catch (Exception e) {
@@ -166,6 +291,117 @@ public class SrcdbToTgtdb {
         } finally {
             jdbcConn.closeDbConnection();
         }
+    }
+    /**
+     * 生成所有的分区表DDL文件(按sys生成ddl文件)
+     */
+    public void generateDDL_Partition(String level, String sys) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid from src_column where sys='"+sys+"' GROUP BY sys,db_schema,db_sid ) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableHistory("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(4);
+    			this.createTableHistory(srcDbType, srctypeString1, tgttypeString1);
+    		}
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    /**
+     * 生成所有的分区表DDL文件(按schema生成ddl文件)
+     */
+    public void generateDDL_Partition(String level, String sys, String sid, String schema) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' GROUP BY sys,db_schema,db_sid ) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String sidtypeString1 = resultSet.getString(3);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableHistory("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(4);
+    			this.createTableHistory(srcDbType, srctypeString1, tgttypeString1, sidtypeString1);
+    		}
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    /**
+     * 生成所有的分区表DDL文件(按表名生成ddl文件)
+     */
+    public void generateDDL_Partition(String level, String sys, String sid, String schema, String tableName) {
+    	
+    	// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    	//String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
+    	String sqlString = "select t1.sys,t1.db_schema,t1.db_sid,t1.table_name,t2.db_type from "+ 
+    			"(SELECT sys, db_schema,db_sid,table_name from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' and table_name='"+tableName+"' GROUP BY sys,db_schema,db_sid,table_name ) t1 "+
+    			" inner join  src_system t2 on t1.sys=t2.sys and t1.db_schema = t2.db_schema and t1.db_sid = t2.db_sid";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	
+    	//SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb();
+    	
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String sidtypeString1 = resultSet.getString(3);
+    			String tabletypeString1 = resultSet.getString(4);
+    			// 调整代码增加 查询源表的数据库类型 20190809 by cm
+    			//this.createTableHistory("mysql", srctypeString1, tgttypeString1);
+    			String srcDbType = resultSet.getString(5);
+    			this.createTableHistory(srcDbType, srctypeString1, tgttypeString1, sidtypeString1, tabletypeString1);
+    		}
+    		//srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
     }
 
     /**
@@ -300,12 +536,12 @@ public class SrcdbToTgtdb {
 
 
     /**
-     * 当日数据表
+     * 当日数据表（生成所有系统）
      * @param srcString
      * @param prefixName
      * @param schemaName
      */
-    public void createTableToday(String srcString, String prefixName, String schemaName) {
+    public void createTableTodayAll(String srcString, String prefixName, String schemaName) {
         HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
         String sqlString = "select t1.* from src_column t1"
         			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
@@ -359,6 +595,189 @@ public class SrcdbToTgtdb {
 
         }
     }
+    
+    /**
+     * 当日数据表（指定sys）
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    public void createTableToday(String srcString, String prefixName, String schemaName) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);
+    	List<TableInfo> tableInfos = getsqlListToday(stringListHashMap, prefixName);
+    	BufferedWriter bw = null;
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ UNDERLINE + StringExtension.toStyleString(schema)
+    				+ UNDERLINE + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			}
+    			File fileParent = file.getParentFile();
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    
+    /**
+     * 当日数据表（指定sys，sid，schema）
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    public void createTableToday(String srcString, String prefixName, String schemaName, String dbsidString1) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='"+ dbsidString1+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);
+    	List<TableInfo> tableInfos = getsqlListToday(stringListHashMap, prefixName);
+    	BufferedWriter bw = null;
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ UNDERLINE + StringExtension.toStyleString(schema)
+    				+ UNDERLINE + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			}
+    			File fileParent = file.getParentFile();
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    
+    /**
+     * 当日数据表（指定sys，sid，schema，tablename）
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    public void createTableToday(String srcString, String prefixName, String schemaName, String dbsidString1,String tabletypeString1) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='"+ dbsidString1+"' and t1.table_name='"+ tabletypeString1+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);
+    	List<TableInfo> tableInfos = getsqlListToday(stringListHashMap, prefixName);
+    	BufferedWriter bw = null;
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ UNDERLINE + StringExtension.toStyleString(schema)
+    				+ UNDERLINE + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlSnapshotTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(CURRENTDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + UNDERLINE + "m.sql";
+    				file = new File(pathName);
+    			}
+    			File fileParent = file.getParentFile();
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
 
     /**
      * 历史数据表
@@ -366,7 +785,7 @@ public class SrcdbToTgtdb {
      * @param prefixName
      * @param schemaName
      */
-    private void createTableHistory(String srcString, String prefixName, String schemaName) {
+    private void createTableHistoryAll(String srcString, String prefixName, String schemaName) {
         HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
         String sqlString = "select t1.* from src_column t1"
         		+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
@@ -427,6 +846,210 @@ public class SrcdbToTgtdb {
         } finally {
 
         }
+    }
+    /**
+     * 历史数据表（指定sys）
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    private void createTableHistory(String srcString, String prefixName, String schemaName) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);       
+    	List<TableInfo> tableInfos = getsqlListHistory(stringListHashMap, prefixName,schemaName);
+    	
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlPartitionTableDir
+    						+ "/" + StringExtension.toStyleString(prefixName)
+    						+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    						+ "." + StringExtension.toStyleString(prefixName)
+    						+ UNDERLINE + StringExtension.toStyleString(schema)
+    						+ UNDERLINE + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlPartitionTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			}
+    			
+    			
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    		//System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    /**
+     * 历史数据表(指定schema)
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    private void createTableHistory(String srcString, String prefixName, String schemaName, String sidtypeString1 ) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='"+ sidtypeString1+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);       
+    	List<TableInfo> tableInfos = getsqlListHistory(stringListHashMap, prefixName,schemaName);
+    	
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlPartitionTableDir
+    						+ "/" + StringExtension.toStyleString(prefixName)
+    						+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    						+ "." + StringExtension.toStyleString(prefixName)
+    						+ UNDERLINE + StringExtension.toStyleString(schema)
+    						+ UNDERLINE + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlPartitionTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			}
+    			
+    			
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    		//System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    /**
+     * 历史数据表(指定表名)
+     * @param srcString
+     * @param prefixName
+     * @param schemaName
+     */
+    private void createTableHistory(String srcString, String prefixName, String schemaName, String sidtypeString1, String tabletypeString1) {
+    	HashMap<String, String> tableConvertTableScheMap = getConvertTableSchema();
+    	String sqlString = "select t1.* from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='" + sidtypeString1 + "' and t1.table_name='" + tabletypeString1 + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, "oracle", sqlString);       
+    	List<TableInfo> tableInfos = getsqlListHistory(stringListHashMap, prefixName,schemaName);
+    	
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String sql = tableInfo.getInfo();
+    			String tableName = tableInfo.getTableName();
+    			String schema = tableInfo.getSchema();
+    			if (schema == null || schema == "") {
+    				schema = "";
+    			}
+    			// String schemaString = object.toString().split("&&")[2];
+    			File file = null;
+    			if (schema.length() > 0) {
+    				String pathName = ddlPartitionTableDir
+    						+ "/" + StringExtension.toStyleString(prefixName)
+    						+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    						+ "." + StringExtension.toStyleString(prefixName)
+    						+ UNDERLINE + StringExtension.toStyleString(schema)
+    						+ UNDERLINE + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			} else {
+    				String pathName = ddlPartitionTableDir + "/" + StringExtension.toStyleString(prefixName)
+    				+ "/" + StringExtension.toStyleString(HISTORYDBNAME)
+    				+ "." + StringExtension.toStyleString(prefixName)
+    				+ "_" + StringExtension.toStyleString(tableName) + ".sql";
+    				file = new File(pathName);
+    			}
+    			
+    			
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql + "\n");
+    			bw.close();
+    		}
+    		
+    		//System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
     }
 
 

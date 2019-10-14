@@ -24,7 +24,7 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 	@Override
 	public String oracleFileDdl() {
 		try {
-			testOracleAndImpalaFile.oracleFile();
+			testOracleAndImpalaFile.oracleFileAll();
 			System.out.println("OK");
 			return "success";
 		} catch (Exception e) {
