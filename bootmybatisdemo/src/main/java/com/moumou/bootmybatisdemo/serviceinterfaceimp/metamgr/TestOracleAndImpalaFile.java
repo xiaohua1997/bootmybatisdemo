@@ -16,7 +16,7 @@ public class TestOracleAndImpalaFile {
 	public void generate(String level, String dbtype) 
 			throws Exception {
 			if (dbtype.equals("impala")) {
-				//impalaFile(level, null, null, null, null);
+				impalaFile(level);
 			} else if (dbtype.equals("oracle")) {
 				oracleFile(level);
 			}
@@ -26,7 +26,7 @@ public class TestOracleAndImpalaFile {
 	public void generate(String level, String dbtype, String sys) 
 			throws Exception {
 		if (dbtype.equals("impala")) {
-			//impalaFile(level, null, null, null, null);
+			impalaFile(level,sys);
 		} else if (dbtype.equals("oracle")) {
 			oracleFile(level,sys);
 		}
@@ -36,7 +36,7 @@ public class TestOracleAndImpalaFile {
 	public void generate(String level, String dbtype, String sys, String sid, String schema) 
 			throws Exception {
 		if (dbtype.equals("impala")) {
-			//impalaFile(level, null, null, null, null);
+			impalaFile(level,sys,sid,schema);
 		} else if (dbtype.equals("oracle")) {
 			oracleFile(level,sys,sid,schema);
 		}
@@ -46,7 +46,7 @@ public class TestOracleAndImpalaFile {
 	public void generate(String level, String dbtype, String sys, String sid, String schema, String tableName) 
 			throws Exception {
 		if (dbtype.equals("impala")) {
-			//impalaFile(level, null, null, null, null);
+			impalaFile(level,sys,sid,schema,tableName);
 		} else if (dbtype.equals("oracle")) {
 			oracleFile(level,sys,sid,schema,tableName);
 		}
@@ -139,19 +139,20 @@ public class TestOracleAndImpalaFile {
     }
     
     /*
-     * 用来测试的主函数
+     * 用来测试oracleFile的主函数
      */
     public static void main(String[] args) {
     	TestOracleAndImpalaFile s = new TestOracleAndImpalaFile();
     	try {
-			s.oracleFile("all","JZJY");
+			//s.oracleFile("all","JZJY");
+			s.impalaFile("all","JZJY","his","dbo","h_assetdetail");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
     
-     public void impalaFile() throws IOException{
+     public void impalaFile(String level) throws IOException{
         	
         String impala_ddl_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
         		+ "/020303 Impala_当日_建表";
@@ -162,9 +163,55 @@ public class TestOracleAndImpalaFile {
 
         System.out.println("-------------------------");
         MysqlToImpala mysqlToImpala = new MysqlToImpala(impala_ddl_dir, impala_dml_dir);
-        mysqlToImpala.sqlCreateFile();
-        mysqlToImpala.sqlSelectFile();
+        mysqlToImpala.sqlCreateFile(level);
+        mysqlToImpala.sqlSelectFile(level);
         System.out.println("----Hadoop OK----");
     }
+     
+     public void impalaFile(String level, String sys) throws IOException{
+    	 
+    	 String impala_ddl_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/020303 Impala_当日_建表";
+    	 String impala_dml_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/sqoop_project/sqoop";
+    	 FileUtils.forceMkdir(new File(impala_ddl_dir));
+    	 FileUtils.forceMkdir(new File(impala_dml_dir));
+    	 
+    	 System.out.println("-------------------------");
+    	 MysqlToImpala mysqlToImpala = new MysqlToImpala(impala_ddl_dir, impala_dml_dir);
+    	 mysqlToImpala.sqlCreateFile(level, sys);
+    	 mysqlToImpala.sqlSelectFile(level, sys);
+    	 System.out.println("----Hadoop OK----");
+     }
+     public void impalaFile(String level, String sys, String sid, String schema) throws IOException{
+    	 
+    	 String impala_ddl_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/020303 Impala_当日_建表";
+    	 String impala_dml_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/sqoop_project/sqoop";
+    	 FileUtils.forceMkdir(new File(impala_ddl_dir));
+    	 FileUtils.forceMkdir(new File(impala_dml_dir));
+    	 
+    	 System.out.println("-------------------------");
+    	 MysqlToImpala mysqlToImpala = new MysqlToImpala(impala_ddl_dir, impala_dml_dir);
+    	 mysqlToImpala.sqlCreateFile(level, sys, sid, schema);
+    	 mysqlToImpala.sqlSelectFile(level, sys, sid, schema);
+    	 System.out.println("----Hadoop OK----");
+     }
+     public void impalaFile(String level, String sys, String sid, String schema, String tableName) throws IOException{
+    	 
+    	 String impala_ddl_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/020303 Impala_当日_建表";
+    	 String impala_dml_dir = URLDecoder.decode(TestOracleAndImpalaFile.class.getClassLoader().getResource("").getPath(), "utf-8")
+    			 + "/sqoop_project/sqoop";
+    	 FileUtils.forceMkdir(new File(impala_ddl_dir));
+    	 FileUtils.forceMkdir(new File(impala_dml_dir));
+    	 
+    	 System.out.println("-------------------------");
+    	 MysqlToImpala mysqlToImpala = new MysqlToImpala(impala_ddl_dir, impala_dml_dir);
+    	 mysqlToImpala.sqlCreateFile(level, sys, sid, schema, tableName);
+    	 mysqlToImpala.sqlSelectFile(level, sys, sid, schema, tableName);
+    	 System.out.println("----Hadoop OK----");
+     }
 }
 

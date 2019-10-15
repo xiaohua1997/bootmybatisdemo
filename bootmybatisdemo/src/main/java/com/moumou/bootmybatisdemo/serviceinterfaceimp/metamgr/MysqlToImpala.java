@@ -46,8 +46,8 @@ public class MysqlToImpala {
     	this.dmlDir = dmlDir;
     }
 
-    //循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
-    public void sqlCreateFile() {
+    //（全部系统）循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
+    public void sqlCreateFile(String level) {
         String sqlString = "SELECT sys, db_schema from src_column GROUP BY sys,db_schema";
         JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
@@ -61,7 +61,7 @@ public class MysqlToImpala {
                 String srctypeString1 = resultSet.getString(1);
                 String tgttypeString1 = resultSet.getString(2);
                 //System.out.println("\"" + srctypeString1 + "," + tgttypeString1 +"\"");
-                this.createTableScript("mysql", "hive", srctypeString1, tgttypeString1);
+                this.createTableScriptAll("mysql", "hive", srctypeString1, tgttypeString1);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,9 +69,81 @@ public class MysqlToImpala {
             jdbcConn.closeDbConnection();
         }
     }
+    //(指定系统)循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
+    public void sqlCreateFile(String level, String sys) {
+    	String sqlString = "SELECT sys, db_schema from src_column where sys='"+sys+"' GROUP BY sys,db_schema";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			//System.out.println("\"" + srctypeString1 + "," + tgttypeString1 +"\"");
+    			this.createTableScript("mysql", "hive", srctypeString1, tgttypeString1);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    //（指定schema）循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
+    public void sqlCreateFile(String level, String sys, String sid, String schema) {
+    	String sqlString = "SELECT sys, db_schema, db_sid from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' GROUP BY sys,db_schema,db_sid";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String sidtypeString1 = resultSet.getString(3);
+    			//System.out.println("\"" + srctypeString1 + "," + tgttypeString1 +"\"");
+    			this.createTableScript("mysql", "hive", srctypeString1, tgttypeString1, sidtypeString1);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    //（指定表名）循环创建hive建表语句  内部调用createTableScript("mysql", "hive", srctypeString1,tgttypeString1);
+    public void sqlCreateFile(String level, String sys, String sid, String schema, String tableName) {
+    	String sqlString = "SELECT sys, db_schema, db_sid, table_name from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' and table_name='"+tableName+"' GROUP BY sys,db_schema,db_sid,table_name";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String srctypeString1 = resultSet.getString(1);
+    			String tgttypeString1 = resultSet.getString(2);
+    			String sidtypeString1 = resultSet.getString(3);
+    			String tabletypeString1 = resultSet.getString(4);
+    			//System.out.println("\"" + srctypeString1 + "," + tgttypeString1 +"\"");
+    			this.createTableScript("mysql", "hive", srctypeString1, tgttypeString1, sidtypeString1, tabletypeString1);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
 
-    //循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
-    public void sqlSelectFile() {
+    //(指定全部系统)循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
+    public void sqlSelectFile(String level) {
         String sqlString = "select sys, db_sid, db_schema from src_system";
         JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
         Connection connection = jdbcConn.getDbConnection();
@@ -85,7 +157,7 @@ public class MysqlToImpala {
                 String sys = resultSet.getString(1);
                 String sid = resultSet.getString(2);
                 String schema = resultSet.getString(3);
-                this.createTableLoadScript(sys, sid, schema);
+                this.createTableLoadScriptAll(sys, sid, schema);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,11 +165,81 @@ public class MysqlToImpala {
             jdbcConn.closeDbConnection();
         }
     }
+    //(指定系统)循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
+    public void sqlSelectFile(String level, String sys) {
+    	String sqlString = "select sys, db_sid, db_schema from src_system where sys='"+sys+"'";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String sys1 = resultSet.getString(1);
+    			String sid = resultSet.getString(2);
+    			String schema = resultSet.getString(3);
+    			this.createTableLoadScriptSid(sys1, sid, schema);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    //(指定schema)循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
+    public void sqlSelectFile(String level, String sys, String sid, String schema) {
+    	String sqlString = "select sys, db_sid, db_schema from src_system where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"'";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String sys1 = resultSet.getString(1);
+    			String sid1 = resultSet.getString(2);
+    			String schema1 = resultSet.getString(3);
+    			this.createTableLoadScriptSchema(sys1, sid1, schema1);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
+    //(指定表名)循环创建sqoop语句  内部调用createTableLoadScript(srctypeString1, tgttypeString1);
+    public void sqlSelectFile(String level, String sys, String sid, String schema, String tableName) {
+    	String sqlString = "SELECT sys, db_schema, db_sid, table_name from src_column where sys='"+sys+"' and db_sid='"+sid+"' and db_schema='"+schema+"' and table_name='"+tableName+"' GROUP BY sys,db_schema,db_sid,table_name";
+    	JdbcConnection jdbcConn = new JdbcConnection("edw", "edw123456", "192.10.30.15", "3306", "edw_dev", "mysql");
+    	Connection connection = jdbcConn.getDbConnection();
+    	ResultSet resultSet = null;
+    	//MysqlToImpala mysqlToImpala = new MysqlToImpala();
+    	try {
+    		PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		while (resultSet.next()) {
+    			String sys1 = resultSet.getString(1);
+    			String schema1 = resultSet.getString(2);
+    			String sid1 = resultSet.getString(3);
+    			String table_name1 = resultSet.getString(4);
+    			this.createTableLoadScriptTable(sys1, schema1, sid1, table_name1);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		jdbcConn.closeDbConnection();
+    	}
+    }
 
     //生成指定prefixname和schemaName 的文件
     //内部调用getTableDes(srcString,tgtString,sqlString);
-    //getSqlString(list,prefixName);
-    private void createTableScript(String srcString, String tgtString, String prefixName, String schemaName) {
+    //getSqlString(list,prefixName);（指定全部）
+    private void createTableScriptAll(String srcString, String tgtString, String prefixName, String schemaName) {
         String sqlString = "select * from src_column t1"
         				+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
         				+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "'"
@@ -151,11 +293,176 @@ public class MysqlToImpala {
 
         }
     }
+    //(指定系统)
+    private void createTableScript(String srcString, String tgtString, String prefixName, String schemaName) {
+    	String sqlString = "select * from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	//String sqlString = "SELECT * from src_column where sys='HSPB' and db_schema='trade' ORDER BY sys,db_schema,column_id desc;";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, tgtString, sqlString);
+    	//System.out.println(list);
+    	List<TableInfo> tableInfos = getSqlString(stringListHashMap, prefixName);
+//		for (Object object : createTableSql) {
+//			System.out.println(object.toString());
+//		}
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String tableName = tableInfo.getTableName();
+    			String sql = tableInfo.getInfo();
+    			String pathName = ddlDir + "/" + StringExtension.toStyleString(prefixName.trim())
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(tableName) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				//System.out.println(file.getParent());
+    				//System.out.println(file.getName());
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			// System.out.println(object.toString());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    			
+    		}
+    		
+    		
+    		System.out.println("Done");
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    //(指定schema)
+    private void createTableScript(String srcString, String tgtString, String prefixName, String schemaName, String sidtypeString1) {
+    	String sqlString = "select * from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='"+sidtypeString1+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	//String sqlString = "SELECT * from src_column where sys='HSPB' and db_schema='trade' ORDER BY sys,db_schema,column_id desc;";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, tgtString, sqlString);
+    	//System.out.println(list);
+    	List<TableInfo> tableInfos = getSqlString(stringListHashMap, prefixName);
+//		for (Object object : createTableSql) {
+//			System.out.println(object.toString());
+//		}
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String tableName = tableInfo.getTableName();
+    			String sql = tableInfo.getInfo();
+    			String pathName = ddlDir + "/" + StringExtension.toStyleString(prefixName.trim())
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(tableName) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				//System.out.println(file.getParent());
+    				//System.out.println(file.getName());
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			// System.out.println(object.toString());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    			
+    		}
+    		
+    		
+    		System.out.println("Done");
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
+    private void createTableScript(String srcString, String tgtString, String prefixName, String schemaName, String sidtypeString1, String tabletypeString1) {
+    	String sqlString = "select * from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + prefixName + "' and t1.db_schema='" + schemaName + "' and t1.db_sid='"+sidtypeString1+"' and t1.table_name='"+tabletypeString1+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	//String sqlString = "SELECT * from src_column where sys='HSPB' and db_schema='trade' ORDER BY sys,db_schema,column_id desc;";
+    	
+    	HashMap<String, List<SourceField>> stringListHashMap = getTableDes(srcString, tgtString, sqlString);
+    	//System.out.println(list);
+    	List<TableInfo> tableInfos = getSqlString(stringListHashMap, prefixName);
+//		for (Object object : createTableSql) {
+//			System.out.println(object.toString());
+//		}
+    	BufferedWriter bw = null;
+    	try {
+    		
+    		
+    		for (TableInfo tableInfo : tableInfos) {
+    			String tableName = tableInfo.getTableName();
+    			String sql = tableInfo.getInfo();
+    			String pathName = ddlDir + "/" + StringExtension.toStyleString(prefixName.trim())
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(tableName) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				//System.out.println(file.getParent());
+    				//System.out.println(file.getName());
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			// System.out.println(object.toString());
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    			
+    		}
+    		
+    		
+    		System.out.println("Done");
+    		
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    }
 
 
     //生成指定prefixName和schemaName
     //调用getListto(prefixName, schemaName, sqlString);
-    private void createTableLoadScript(String sys, String sid, String schema) {
+    //(指定全部系统)
+    private void createTableLoadScriptAll(String sys, String sid, String schema) {
         String sqlString = "select t1.sys, t1.table_name, t1.db_sid, t1.db_schema, t2.inc_cdt, t1.column_name"
                 +" from src_column t1"
                 + " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
@@ -194,6 +501,131 @@ public class MysqlToImpala {
 
         }
 
+    }
+    //(指定sys系统)
+    private void createTableLoadScriptSid(String sys, String sid, String schema) {
+    	String sqlString = "select t1.sys, t1.table_name, t1.db_sid, t1.db_schema, t2.inc_cdt, t1.column_name"
+    			+" from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + sys + "' and t1.db_sid='" + sid + "' and t1.db_schema='" + schema + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	BufferedWriter bw = null;
+    	List<TableInfo> tableInfos = getListto(sqlString);
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String key = tableInfo.getSchema();
+    			String sql = tableInfo.getInfo();
+    			String pathName = dmlDir + "/" + StringExtension.toStyleString(sys)
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(key) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    		}
+    		System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    	
+    }
+    //(指定schema系统)
+    private void createTableLoadScriptSchema(String sys, String sid, String schema) {
+    	String sqlString = "select t1.sys, t1.table_name, t1.db_sid, t1.db_schema, t2.inc_cdt, t1.column_name"
+    			+" from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + sys + "' and t1.db_sid='" + sid + "' and t1.db_schema='" + schema + "'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	BufferedWriter bw = null;
+    	List<TableInfo> tableInfos = getListto(sqlString);
+    	
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String key = tableInfo.getSchema();
+    			String sql = tableInfo.getInfo();
+    			String pathName = dmlDir + "/" + StringExtension.toStyleString(sys)
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(key) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    		}
+    		System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    	
+    }
+    //(指定表名)
+    private void createTableLoadScriptTable(String sys, String schema, String sid, String tableName) {
+    	String sqlString = "select t1.sys, t1.table_name, t1.db_sid, t1.db_schema, t2.inc_cdt, t1.column_name"
+    			+" from src_column t1"
+    			+ " inner join src_table t2 on t1.sys = t2.sys and t1.db_sid = t2.db_sid and t1.db_schema = t2.table_schema and t1.table_name = t2.table_name and upper(t2.is_put_to_etldb) = 'Y'"
+    			+ " where t1.sys='" + sys + "' and t1.db_sid='" + sid + "' and t1.db_schema='" + schema + "' and t1.table_name='"+tableName+"'"
+    			+ " order by t1.sys asc, t1.db_sid asc, t1.db_schema asc, t1.table_name asc, t1.column_id asc";
+    	BufferedWriter bw = null;
+    	//System.out.println(sqlString);
+    	List<TableInfo> tableInfos = getListto(sqlString);
+    	try {
+    		for (TableInfo tableInfo : tableInfos) {
+    			String key = tableInfo.getSchema();
+    			String sql = tableInfo.getInfo();
+    			String pathName = dmlDir + "/" + StringExtension.toStyleString(sys)
+    			+ "/" + "ods" + "_" + StringExtension.toStyleString(key) + ".sql";
+    			File file = new File(pathName);
+    			File fileParent = file.getParentFile();
+    			
+    			if (!fileParent.exists()) {
+    				fileParent.mkdirs();
+    			}
+    			
+    			// if file doesnt exists, then create it
+    			if (!file.exists()) {
+    				file.createNewFile();
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			
+    			bw = new BufferedWriter(fw);
+    			bw.write(sql);
+    			bw.close();
+    		}
+    		System.out.println("Done");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} finally {
+    		
+    	}
+    	
     }
 
 
@@ -287,9 +719,9 @@ public class MysqlToImpala {
         ResultSet resultSet = null;
         HashMap<String, String> hashMap = new HashMap<String, String>();
         List<String> list = new ArrayList<String>();
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+            //System.out.println(sqlString);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String sysString = resultSet.getString(1);

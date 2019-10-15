@@ -425,7 +425,7 @@ public class SrcdbToTgtdb {
                 String srctypeString1 = resultSet.getString(1);
                 String tgttypeString1 = resultSet.getString(2);
 
-                this.createTableHistoryToToday("mysql", srctypeString1, tgttypeString1);
+                this.createTableHistoryToTodayAll("mysql", srctypeString1, tgttypeString1);
             }
             //srcdbToTgtdb.createTableScript("mysql","KFM", "dbo");
         } catch (Exception e) {
