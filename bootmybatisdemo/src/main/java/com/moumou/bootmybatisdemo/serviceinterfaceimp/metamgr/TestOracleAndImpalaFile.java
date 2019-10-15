@@ -71,7 +71,7 @@ public class TestOracleAndImpalaFile {
         /**
          * oracle dml  生成调整到 OracleDmlCreator
          */
-       srcdbToTgtdb.generateDML_SnapshotToPartition(); //Oracle DML脚本文件（快照表-> 分区表》）
+       srcdbToTgtdb.generateDML_SnapshotToPartition(level); //Oracle DML脚本文件（快照表-> 分区表》）
         System.out.println("---- Oracle OK----");
     }
     public void oracleFile(String level, String sys) throws Exception {
@@ -88,11 +88,11 @@ public class TestOracleAndImpalaFile {
     	
     	SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb(ddlSnapshotTableDir, ddlPartitionTableDir, dmlSnapShotToPartitionDir);
     	srcdbToTgtdb.generateDDL_Snapshot(level,sys); //快照表DDL
-    	srcdbToTgtdb.generateDDL_Partition();  //分区表DDL
+    	srcdbToTgtdb.generateDDL_Partition(level,sys);  //分区表DDL
     	/**
     	 * oracle dml  生成调整到 OracleDmlCreator
     	 */
-    	srcdbToTgtdb.generateDML_SnapshotToPartition(); //Oracle DML脚本文件（快照表-> 分区表》）
+    	srcdbToTgtdb.generateDML_SnapshotToPartition(level,sys); //Oracle DML脚本文件（快照表-> 分区表》）
     	System.out.println("---- Oracle OK----");
     }
     public void oracleFile(String level, String sys, String sid, String schema) throws Exception {
@@ -109,11 +109,11 @@ public class TestOracleAndImpalaFile {
     	
     	SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb(ddlSnapshotTableDir, ddlPartitionTableDir, dmlSnapShotToPartitionDir);
     	srcdbToTgtdb.generateDDL_Snapshot(level,sys,sid,schema); //快照表DDL
-    	srcdbToTgtdb.generateDDL_Partition();  //分区表DDL
+    	srcdbToTgtdb.generateDDL_Partition(level,sys,sid,schema);  //分区表DDL
     	/**
     	 * oracle dml  生成调整到 OracleDmlCreator
     	 */
-    	srcdbToTgtdb.generateDML_SnapshotToPartition(); //Oracle DML脚本文件（快照表-> 分区表》）
+    	srcdbToTgtdb.generateDML_SnapshotToPartition(level,sys,sid,schema); //Oracle DML脚本文件（快照表-> 分区表》）
     	System.out.println("---- Oracle OK----");
     }
     public void oracleFile(String level, String sys, String sid, String schema, String tableName) throws Exception {
@@ -130,11 +130,11 @@ public class TestOracleAndImpalaFile {
     	
     	SrcdbToTgtdb srcdbToTgtdb = new SrcdbToTgtdb(ddlSnapshotTableDir, ddlPartitionTableDir, dmlSnapShotToPartitionDir);
     	srcdbToTgtdb.generateDDL_Snapshot(level,sys,sid,schema,tableName); //快照表DDL
-    	srcdbToTgtdb.generateDDL_Partition();  //分区表DDL
+    	srcdbToTgtdb.generateDDL_Partition(level,sys,sid,schema,tableName);  //分区表DDL
     	/**
     	 * oracle dml  生成调整到 OracleDmlCreator
     	 */
-    	srcdbToTgtdb.generateDML_SnapshotToPartition(); //Oracle DML脚本文件（快照表-> 分区表》）
+    	srcdbToTgtdb.generateDML_SnapshotToPartition(level,sys,sid,schema,tableName); //Oracle DML脚本文件（快照表-> 分区表》）
     	System.out.println("---- Oracle OK----");
     }
     
@@ -144,7 +144,7 @@ public class TestOracleAndImpalaFile {
     public static void main(String[] args) {
     	TestOracleAndImpalaFile s = new TestOracleAndImpalaFile();
     	try {
-			s.oracleFile("all","JZJY","his","dbo","h_logmateno");
+			s.oracleFile("all","JZJY");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
