@@ -22,9 +22,9 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
     @Autowired
     private SrcSystemMapper srcSystemMapper;
 	@Override
-	public String oracleFileDdl() {
+	public String oracleFileDdl(String level) {
 		try {
-			testOracleAndImpalaFile.oracleFileAll();
+			testOracleAndImpalaFile.impalaFile(level);
 			System.out.println("OK");
 			return "success";
 		} catch (Exception e) {
@@ -34,9 +34,9 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 	}
 
 	@Override
-	public String impalaFileDdl() {
+	public String impalaFileDdl(String level) {
 		try {
-			testOracleAndImpalaFile.impalaFile();
+			testOracleAndImpalaFile.impalaFile(level);
 			return "success";
 		} catch (IOException e) {
 			e.printStackTrace();

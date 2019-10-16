@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.TestOracleAndImpalaFileService;
 import com.moumou.bootmybatisdemo.util.JsonResult;
 
@@ -17,11 +20,11 @@ public class TestOracleAndImpalaFileController {
 	
 	@Autowired
 	private TestOracleAndImpalaFileService testOracleAndImpalaFileService;
-	@RequestMapping(value="/oraclefile",method = RequestMethod.GET)
-	public JsonResult oracleFile() {
-		
+	@RequestMapping(value="/oraclefile", method=RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody JsonResult createFile(@RequestBody SrcTable srcTable) {
+		String level = srcTable.getLevel();
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s = testOracleAndImpalaFileService.oracleFileDdl();
+		String s = testOracleAndImpalaFileService.oracleFileDdl(level);
 		if("success".equals(s)) {
 			map.put("status", "success");
 	        map.put("msg", "生成oracle的ddl完成"); 
@@ -32,11 +35,12 @@ public class TestOracleAndImpalaFileController {
 		return new JsonResult(map);
 	}
 	
-	@RequestMapping(value="/impalafile",method = RequestMethod.GET)
-	public JsonResult impalaFile() {
+	@RequestMapping(value="/impalafile", method=RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+	public @ResponseBody JsonResult impalaFile(@RequestBody SrcTable srcTable) {
+		String level = srcTable.getLevel();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		String s = testOracleAndImpalaFileService.impalaFileDdl();
+		String s = testOracleAndImpalaFileService.impalaFileDdl(level);
 		if("success".equals(s)) {
 			map.put("status", "success");
 			map.put("msg", "生成impala的ddl完成");
