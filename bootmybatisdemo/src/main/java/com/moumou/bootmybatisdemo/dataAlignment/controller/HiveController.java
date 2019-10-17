@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.Hive;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.HiveService;
 import com.moumou.bootmybatisdemo.util.JsonResult;
 

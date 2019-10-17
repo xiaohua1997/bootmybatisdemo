@@ -6,6 +6,7 @@ public interface HiveService {
 	
 	String hives();
 	String aHive(Hive hive);
+	String aMappingHive(String path, String sheetName);
 	String hiveJob();
 
 }

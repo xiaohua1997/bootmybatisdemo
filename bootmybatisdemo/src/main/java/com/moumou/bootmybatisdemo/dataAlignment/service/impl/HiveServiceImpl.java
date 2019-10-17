@@ -39,4 +39,10 @@ public class HiveServiceImpl implements HiveService{
 		}
 	}
 
+	@Override
+	public String aMappingHive(String path, String sheetName) {
+		xlsxInput.aMappingHive(path, sheetName);
+		return "success";
+	}
+
 }

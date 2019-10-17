@@ -53,6 +53,14 @@ public class XlsxInput {
             ON条件 ★
      */
 	
+	public void aMappingHive(String path, String sheetName) {
+		//指定临时存放的mapping路径
+		String rootPath = path;
+		String sheet = sheetName;
+		int startRow = 1;
+		XlsxInput.createHiveScript(rootPath, sheet, startRow);;
+	}
+	
 	public void aHive(Hive hive) {
 		//指定本地SVN副本根目录
 		String rootPath = "C:\\Users\\Administrator\\Desktop\\workbench\\projdoc_edw2";
