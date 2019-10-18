@@ -1,7 +1,6 @@
 package com.moumou.bootmybatisdemo.dataAlignment.service.impl;
 
 import com.moumou.bootmybatisdemo.dataAlignment.mapper.SrcTableMapper;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcTableService;
 import org.springframework.beans.factory.annotation.Autowired;

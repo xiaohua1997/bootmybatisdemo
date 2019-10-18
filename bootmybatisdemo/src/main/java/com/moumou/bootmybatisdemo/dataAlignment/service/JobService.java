@@ -1,6 +1,5 @@
 package com.moumou.bootmybatisdemo.dataAlignment.service;
 
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 
 public interface JobService {
 	

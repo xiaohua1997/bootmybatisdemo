@@ -4,7 +4,6 @@ package com.moumou.bootmybatisdemo.dataAlignment.service;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SrcSystemService {
 

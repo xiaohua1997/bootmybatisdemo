@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
 
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.JobService;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.ScheduleJobs;
 @Service
