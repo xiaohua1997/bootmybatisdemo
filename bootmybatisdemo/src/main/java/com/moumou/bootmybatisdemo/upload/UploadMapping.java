@@ -30,7 +30,12 @@ public class UploadMapping {
          long  startTime=System.currentTimeMillis();
         System.out.println("fileName："+file.getOriginalFilename());
         String path="E:/"+file.getOriginalFilename();
-        File newFile=new File(path);
+        String fileName=file.getOriginalFilename();
+        File newFile=new File(path+fileName);
+        //判断文件是否存在，如果存在直接删除
+        if(newFile.exists()){
+        	newFile.delete();
+        }
         //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
         file.transferTo(newFile);
         long  endTime=System.currentTimeMillis();
