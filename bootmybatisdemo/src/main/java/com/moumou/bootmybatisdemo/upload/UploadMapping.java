@@ -37,7 +37,7 @@ public class UploadMapping {
         }
         //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
         file.transferTo(newFile);
-        long  endTime=System.currentTimeMillis();
+        long endTime=System.currentTimeMillis();
         System.out.println("采用file.Transto的运行时间："+String.valueOf(endTime-startTime)+"ms");
         
      // String fileSuffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); //获取文件的后缀名.excl
