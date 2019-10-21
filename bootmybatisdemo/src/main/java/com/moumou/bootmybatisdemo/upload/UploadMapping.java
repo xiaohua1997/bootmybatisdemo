@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.moumou.bootmybatisdemo.dataAlignment.service.HiveService;
@@ -25,10 +28,10 @@ public class UploadMapping {
 	 public HiveService hiveService;
 	
 	@RequestMapping(value = "/mapping", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public @ResponseBody JsonResult  uploadMapping(@RequestParam("file") CommonsMultipartFile file) throws IOException {
+    public @ResponseBody JsonResult  uploadMapping(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
          long  startTime=System.currentTimeMillis();
         System.out.println("fileName："+file.getOriginalFilename());
-        String path="E:/"+file.getOriginalFilename();
+        String path="D:/";
         String fileName=file.getOriginalFilename();
         File newFile=new File(path+fileName);
         //判断文件是否存在，如果存在直接删除
