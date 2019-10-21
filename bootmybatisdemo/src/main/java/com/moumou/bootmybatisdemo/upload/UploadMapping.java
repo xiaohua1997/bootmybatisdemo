@@ -1,12 +1,15 @@
 package com.moumou.bootmybatisdemo.upload;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +48,11 @@ public class UploadMapping {
         
      // String fileSuffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); //获取文件的后缀名.excl
      // XSSFWorkbook  xssfWorkBook=XSSFWorkbookKit.create(file.getInputStream());
-        XSSFSheet xssfSheet = (XSSFSheet) ((Workbook) newFile).getSheetAt(0);
-
-        String sheetName = xssfSheet.getSheetName();//获取sheet名称
+        //XSSFSheet xssfSheet = (XSSFSheet) ((Workbook) newFile).getSheetAt(0);
+        FileInputStream inp = new FileInputStream(path+fileName); 
+        HSSFWorkbook wb = new HSSFWorkbook(inp);
+        HSSFSheet sheet = wb.getSheetAt(0); // 获得第三个工作薄(2008工作薄)
+        String sheetName = sheet.getSheetName();//获取sheet名称
                     
         Map<String, Object> map = new HashMap<String, Object>();
         String s = hiveService.aMappingHive(path,sheetName);
