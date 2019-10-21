@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,12 +51,12 @@ public class UploadMapping {
      // XSSFWorkbook  xssfWorkBook=XSSFWorkbookKit.create(file.getInputStream());
         //XSSFSheet xssfSheet = (XSSFSheet) ((Workbook) newFile).getSheetAt(0);
         FileInputStream inp = new FileInputStream(path+fileName); 
-        HSSFWorkbook wb = new HSSFWorkbook(inp);
-        HSSFSheet sheet = wb.getSheetAt(0); // 获得第三个工作薄(2008工作薄)
+        XSSFWorkbook wb = new XSSFWorkbook(inp);
+        XSSFSheet sheet = wb.getSheetAt(0); // 获得第三个工作薄(2008工作薄)
         String sheetName = sheet.getSheetName();//获取sheet名称
                     
         Map<String, Object> map = new HashMap<String, Object>();
-        String s = hiveService.aMappingHive(path,sheetName);
+        String s = hiveService.aMappingHive(path+fileName,sheetName);
         if("success".equals(s)) {
         	map.put("status", "success");
 	        map.put("msg", "更新所有系统完成");
