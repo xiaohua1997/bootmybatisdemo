@@ -57,9 +57,12 @@ import io.swagger.annotations.ApiOperation;
 		}
 		
 		@RequestMapping(value = "/updateetltypeconvert", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-		public String updateEtlTypeConvert (@RequestBody EtlTypeConvert etlTypeConvert){
+		public String updateEtlTypeConvert (@RequestBody EtlTypeConvert[] mode){
 		  LOG.info("修改");
-		  return etlTypeConvertService.updateEtlTypeConvert(etlTypeConvert);
+		  
+		  EtlTypeConvert etlTypeConvert = mode[0];
+		  EtlTypeConvert etlTypeConvert1 = mode[1];
+		  return etlTypeConvertService.updateEtlTypeConvert(etlTypeConvert,etlTypeConvert1);
 		}
 		
 		@RequestMapping(value = "/deletltypeconvert" ,method = RequestMethod.POST)

@@ -7,6 +7,8 @@ import java.util.List;
 public interface SrcTableService {
     
     List<SrcTable> querySrcTable();
+    
+    List<SrcTable> conditionQuerySrcTable(SrcTable srcTable);
 
     String uptateSrcTable(SrcTable srcTable);
     

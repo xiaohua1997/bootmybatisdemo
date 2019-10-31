@@ -7,16 +7,31 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface SrcTableMapper {
     //查询（全量）
     @Select("select * from src_table ")
     List<SrcTable> queryDBS();
+    //条件查询
+    @Select(
+    	    "<script> SELECT * from src_table "
+    	        + "WHERE 1=1"
+    	        + "<if test=\"null!=sys\"> and sys like \"% #{sys} %\" </if> "
+    	        + "<if test=\"null!=sid\"> and db_sid \"% #{sid} %\" </if> "
+    	        + "<if test=\"null!=tablename\"> and table_name \"% #{tablename} %\" </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<SrcTable> conditionQuerySrcTable(String sys, String sid, String tablename);
+    
     //修改
     @Update("UPDATE\n" +
             "src_table\n" +

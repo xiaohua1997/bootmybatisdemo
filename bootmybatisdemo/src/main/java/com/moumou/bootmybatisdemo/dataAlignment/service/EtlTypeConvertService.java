@@ -8,7 +8,7 @@ public interface EtlTypeConvertService {
 	
 	List<EtlTypeConvert> queryEtlTypeConvert();
 	
-	String updateEtlTypeConvert(EtlTypeConvert etlTypeConvert);
+	String updateEtlTypeConvert(EtlTypeConvert etlTypeConvert, EtlTypeConvert etlTypeConvert1);
 	
 	boolean delEtlTypeConvert(EtlTypeConvert etlTypeConvert);
 	

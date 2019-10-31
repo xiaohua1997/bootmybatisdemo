@@ -42,6 +42,26 @@ public class SrcTableController {
         LOG.info("pageInfo size:"+pageInfo.getSize());
         return pageInfo;
     }
+    
+    @RequestMapping(value = "/conditionquerysrctable", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public @ResponseBody List<SrcTable> conditionQuerySrcTable (@RequestBody SrcTable srcTable){
+        LOG.info("条件查询");
+        return srcTableService.conditionQuerySrcTable(srcTable);
+    }
+    
+    @RequestMapping(value = "/conditionquerysrctablepage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public @ResponseBody PageInfo conditionQuerySrcTablePage(Model model,@RequestBody SrcTable srcTable,
+    		                                                 @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
+        LOG.info("条件查询分页");
+        PageHelper.startPage(pageNum,10);
+        LOG.info("pageNum:"+pageNum);
+        List<SrcTable> srcTables = srcTableService.conditionQuerySrcTable(srcTable);
+        PageInfo<SrcTable> pageInfo = new PageInfo<SrcTable>(srcTables);
+        model.addAttribute("pageInfo",pageInfo);
+        LOG.info("pageInfo size:"+pageInfo.getSize());
+        return pageInfo;
+    }
+    
     @RequestMapping(value = "/addsrctable", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     public @ResponseBody String addSrcTable (@RequestBody SrcTable srcTable){
         LOG.info("新增");

@@ -54,4 +54,14 @@ public class SrcTableServiceImpl implements SrcTableService{
 			return true;
 		}
 	}
+
+	@Override
+	public List<SrcTable> conditionQuerySrcTable(SrcTable srcTable) {
+		String sys = srcTable.getSys();
+		String sid = srcTable.getDbSid();
+		String tablename = srcTable.getTableName();
+		
+			return srcTableMapper.conditionQuerySrcTable(sys, sid, tablename);
+		
+	}
 }
