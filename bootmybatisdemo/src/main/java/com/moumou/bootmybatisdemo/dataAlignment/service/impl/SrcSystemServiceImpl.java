@@ -66,4 +66,10 @@ public class SrcSystemServiceImpl implements SrcSystemService {
 		return srcSystemMapper.querySys();
 	}
 
+	@Override
+	public List<SrcSystem> conditionQuerySrcSystem(SrcSystem srcSystem) {
+		
+		return srcSystemMapper.conditionQuerySrcSystem(srcSystem);
+	}
+
 }

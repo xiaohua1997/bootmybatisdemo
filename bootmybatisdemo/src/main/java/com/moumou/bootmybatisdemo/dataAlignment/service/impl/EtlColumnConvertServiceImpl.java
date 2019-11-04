@@ -56,4 +56,10 @@ public class EtlColumnConvertServiceImpl implements EtlColumnConvertService{
         }
         return "添加成功";
 	}
+
+	@Override
+	public List<EtlColumnConvert> conditionQueryEtlColumnConvert(EtlColumnConvert etlColumnConvert) {
+		
+		return etlColumnConvertMapper.conditionQueryEtlColumnConvert(etlColumnConvert);
+	}
 }

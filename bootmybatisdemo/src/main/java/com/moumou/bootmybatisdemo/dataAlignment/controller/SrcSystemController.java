@@ -46,6 +46,21 @@ public class SrcSystemController {
         LOG.info("pageInfo size:"+pageInfo.getSize());
         return pageInfo;
     }
+    
+    @RequestMapping(value = "/conditionquerysrcsystempage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public @ResponseBody PageInfo conditionQuerySrcSystemPage (@RequestBody SrcSystem srcSystem,Model model) {
+    	
+    	int pageNum = srcSystem.getCurrentPage();
+        LOG.info("条件查询分页");
+        PageHelper.startPage(pageNum,10);
+        LOG.info("pageNum:"+pageNum);
+    	List<SrcSystem> srcSystems = srcSystemService.conditionQuerySrcSystem(srcSystem);
+    	PageInfo<SrcSystem> pageInfo = new PageInfo<SrcSystem>(srcSystems);
+    	model.addAttribute("pageInfo",pageInfo);
+        LOG.info("pageInfo size:"+pageInfo.getSize());
+        return pageInfo;
+    }
+    
 //    设置返回的请求编码（boot返回对象的编码默认：utf-8，直接返回字符串的编码是windows系统默认编码：ISO-8859-1）
 //    produces = {"application/json;charset=UTF-8"}
     @RequestMapping(value = "/addsrcsystem", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})

@@ -62,4 +62,10 @@ public class SrcColumnServiceImpl implements SrcColumnService {
 	public String createDictionary() {
 		return exportExcelTest.createDictionary();
 	}
+
+	@Override
+	public List<SrcColumn> conditionQuerySrcColumn(SrcColumn srcColumn) {
+		
+		return srcColumnMapper.conditionQuerySrcColumn(srcColumn);
+	}
 }

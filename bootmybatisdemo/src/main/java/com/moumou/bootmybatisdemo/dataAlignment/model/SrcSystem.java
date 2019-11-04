@@ -4,7 +4,7 @@ import com.moumou.bootmybatisdemo.util.ExcelColumn;
 import lombok.Data;
 
 @Data
-public class SrcSystem {
+public class SrcSystem extends PageNum{
 
     @ExcelColumn("sys")
     private String sys;

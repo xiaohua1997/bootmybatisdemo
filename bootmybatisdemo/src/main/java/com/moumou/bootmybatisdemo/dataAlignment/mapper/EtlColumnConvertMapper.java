@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlColumnConvert;
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
 
 @Mapper
 public interface EtlColumnConvertMapper {
@@ -17,6 +18,19 @@ public interface EtlColumnConvertMapper {
 	//查询
 	@Select("select * from etl_column_convert")
 	List<EtlColumnConvert> queryEtlColumnCon();
+	
+	//条件查询
+    @Select(
+    	    "<script> SELECT * from etl_column_convert "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
+    	        + "<if test='null!=#{srcColumn}'> and src_column like concat('%',#{srcColumn},'%') </if> "
+    	        + "<if test='null!=#{tgtColumn}'> and tgt_column like concat('%',#{tgtColumn},'%') </if> "
+    	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<EtlColumnConvert> conditionQueryEtlColumnConvert(EtlColumnConvert etlColumnConvert);
 	
 	//修改
 	@Update("UPDATE \n" +

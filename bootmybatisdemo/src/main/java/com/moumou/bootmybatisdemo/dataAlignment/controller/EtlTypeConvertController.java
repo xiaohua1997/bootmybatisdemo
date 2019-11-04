@@ -48,6 +48,21 @@ import io.swagger.annotations.ApiOperation;
 		LOG.info("pageInfo size:"+pageInfo.getSize());
 		    return pageInfo;
 		}
+		
+		 @RequestMapping(value = "/conditionqueryetltypeconvertpage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+		    public @ResponseBody PageInfo conditionQueryEtlTypeConvertPage(@RequestBody EtlTypeConvert etlTypeConvert,Model model){
+		    	
+		    	int pageNum = etlTypeConvert.getCurrentPage();
+		        LOG.info("条件查询分页");
+		        PageHelper.startPage(pageNum,10);
+		        LOG.info("pageNum:"+pageNum);
+		        List<EtlTypeConvert> etlTypeConverts = etlTypeConvertService.conditionQueryEtlTypeConvert(etlTypeConvert);
+		        PageInfo<EtlTypeConvert> pageInfo = new PageInfo<EtlTypeConvert>(etlTypeConverts);
+		        model.addAttribute("pageInfo",pageInfo);
+		        LOG.info("pageInfo size:"+pageInfo.getSize());
+		        return pageInfo;
+		    }
+		
 		//设置返回的请求编码（boot返回对象的编码默认：utf-8，直接返回字符串的编码是windows系统默认编码：ISO-8859-1）
 		//produces = {"application/json;charset=UTF-8"}
 		@RequestMapping(value = "/addetltypeconvert", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})

@@ -43,6 +43,21 @@ public class SrcColumnController {
         LOG.info("pageInfo size:"+pageInfo.getSize());
         return pageInfo;
     }
+    
+    @RequestMapping(value = "/conditionquerysrccolumnpage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public @ResponseBody PageInfo conditionQuerySrcColumnPage(@RequestBody SrcColumn srcColumn,Model model){
+    	
+    	int pageNum = srcColumn.getCurrentPage();
+        LOG.info("条件查询分页");
+        PageHelper.startPage(pageNum,10);
+        LOG.info("pageNum:"+pageNum);
+        List<SrcColumn> srcColumns = srcColumnService.conditionQuerySrcColumn(srcColumn);
+        PageInfo<SrcColumn> pageInfo = new PageInfo<SrcColumn>(srcColumns);
+        model.addAttribute("pageInfo",pageInfo);
+        LOG.info("pageInfo size:"+pageInfo.getSize());
+        return pageInfo;
+    }
+    
     @RequestMapping(value = "/addsrccolumn", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     public @ResponseBody String addSrcColumn (@RequestBody SrcColumn srcColumn){
         LOG.info("新增");

@@ -77,4 +77,10 @@ public class EtlTypeConvertServiceImpl implements EtlTypeConvertService{
         return "添加成功";
 	}
 
+	@Override
+	public List<EtlTypeConvert> conditionQueryEtlTypeConvert(EtlTypeConvert etlTypeConvert) {
+		
+		return etlTypeConvertMapper.conditionQueryEtlTypeConvert(etlTypeConvert);
+	}
+
 }

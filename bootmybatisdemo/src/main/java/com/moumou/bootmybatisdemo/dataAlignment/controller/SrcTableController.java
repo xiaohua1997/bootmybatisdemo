@@ -2,7 +2,6 @@ package com.moumou.bootmybatisdemo.dataAlignment.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcTableService;
 import io.swagger.annotations.ApiOperation;
@@ -50,8 +49,9 @@ public class SrcTableController {
     }
     
     @RequestMapping(value = "/conditionquerysrctablepage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public @ResponseBody PageInfo conditionQuerySrcTablePage(Model model,@RequestBody SrcTable srcTable,
-    		                                                 @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
+    public @ResponseBody PageInfo conditionQuerySrcTablePage(@RequestBody SrcTable srcTable,Model model){
+    	
+    	int pageNum = srcTable.getCurrentPage();
         LOG.info("条件查询分页");
         PageHelper.startPage(pageNum,10);
         LOG.info("pageNum:"+pageNum);

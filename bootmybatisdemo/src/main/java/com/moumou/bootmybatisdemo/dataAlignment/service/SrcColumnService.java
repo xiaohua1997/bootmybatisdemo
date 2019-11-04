@@ -7,6 +7,8 @@ import java.util.List;
 public interface SrcColumnService {
 
     List<SrcColumn> querySrcColumn();
+    
+    List<SrcColumn> conditionQuerySrcColumn(SrcColumn srcColumn);
 
     String uptateSrcColumn(SrcColumn srcColumn);
     

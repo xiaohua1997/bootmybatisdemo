@@ -8,6 +8,7 @@ import java.util.List;
 public interface SrcSystemService {
 
     List<SrcSystem> querySrcSystem();
+    List<SrcSystem> conditionQuerySrcSystem(SrcSystem srcSystem);
 
     String uptateSrcSys(SrcSystem srcSystem);
 

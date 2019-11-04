@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
 
 @Mapper
 public interface EtlTypeConvertMapper {
@@ -16,6 +17,19 @@ public interface EtlTypeConvertMapper {
     //查询
 	@Select("select * from etl_type_convert")
 	List<EtlTypeConvert> queryEtlConvert();
+	
+	//条件查询
+    @Select(
+    	    "<script> SELECT * from etl_type_convert "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{srcDbType}'> and src_db_type like concat('%',#{srcDbType},'%') </if> "
+    	        + "<if test='null!=#{srcColumnType}'> and src_column_type like concat('%',#{srcColumnType},'%') </if> "
+    	        + "<if test='null!=#{tgtDbType}'> and tgt_db_type like concat('%',#{tgtDbType},'%') </if> "
+    	        + "<if test='null!=#{tgtColumnType}'> and tgt_column_type like concat('%',#{tgtColumnType},'%') </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<EtlTypeConvert> conditionQueryEtlTypeConvert(EtlTypeConvert etlTypeConvert);
 	
 	//修改
 	@Update("UPDATE \n" +

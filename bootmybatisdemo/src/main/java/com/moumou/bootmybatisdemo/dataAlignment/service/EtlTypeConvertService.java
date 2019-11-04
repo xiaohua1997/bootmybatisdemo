@@ -7,6 +7,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
 public interface EtlTypeConvertService {
 	
 	List<EtlTypeConvert> queryEtlTypeConvert();
+	List<EtlTypeConvert> conditionQueryEtlTypeConvert(EtlTypeConvert etlTypeConvert);
 	
 	String updateEtlTypeConvert(EtlTypeConvert etlTypeConvert, EtlTypeConvert etlTypeConvert1);
 	

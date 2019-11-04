@@ -22,13 +22,13 @@ public interface SrcTableMapper {
     List<SrcTable> queryDBS();
     //条件查询
     @Select(
-    		"<script> SELECT * from src_table "
-        	        + "WHERE 1=1"
-        	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
-        	        + "<if test='null!=#{sid}'> and db_sid like concat('%',#{db_sid},'%') </if> "
-        	        + "<if test='null!=#{tablename}'> and table_name like concat('%',#{table_name},'%') </if> "
-        	        /*+ "LIMIT #{pageindex},#{pagenum} " */
-        	        + "</script>")
+    	    "<script> SELECT * from src_table "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
+    	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
+    	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<SrcTable> conditionQuerySrcTable(SrcTable srcTable);
     

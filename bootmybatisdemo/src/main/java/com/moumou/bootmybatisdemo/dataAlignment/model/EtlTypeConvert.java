@@ -2,7 +2,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.model;
 
 import com.moumou.bootmybatisdemo.util.ExcelColumn;
 
-public class EtlTypeConvert {
+public class EtlTypeConvert extends PageNum{
 	
 	@ExcelColumn("srcDbType")
 	private String srcDbType;

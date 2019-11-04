@@ -13,6 +13,19 @@ public interface SrcSystemMapper {
     //查询（全量）
     @Select("select * from src_system ")
     List<SrcSystem> queryDBS();
+    
+  //条件查询
+    @Select(
+    	    "<script> SELECT * from src_system "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
+    	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
+    	        /*+ "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "*/
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<SrcSystem> conditionQuerySrcSystem(SrcSystem srcSystem);
+    
     //修改
     @Update("update src_system set db_type = #{dbType}, db_version =#{dbVersion}, db_charset =#{dbCharset}, db_ip =#{dbIp}, " +
             "db_port =#{dbPort}, username =#{username}, password =#{password}, encrpassword =#{encrpassword}, remark =#{remark} \n" +

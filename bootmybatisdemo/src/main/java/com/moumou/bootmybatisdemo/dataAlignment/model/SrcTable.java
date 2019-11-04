@@ -2,7 +2,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.model;
 
 import com.moumou.bootmybatisdemo.util.ExcelColumn;
 
-public class SrcTable {
+public class SrcTable extends PageNum{
 	
 	@ExcelColumn("sys")
     private String sys;

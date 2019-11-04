@@ -1,6 +1,7 @@
 package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -17,6 +18,19 @@ public interface SrcColumnMapper {
     @Select("select * from src_column ")
     List<SrcColumn> queryDBS();
 
+  //条件查询
+    @Select(
+    	    "<script> SELECT * from src_column "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
+    	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
+    	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
+    	        + "<if test='null!=#{columnName}'> and column_name like concat('%',#{columnName},'%') </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<SrcColumn> conditionQuerySrcColumn(SrcColumn srcColumn);
+    
     //修改
     @Update("UPDATE \n" +
             "src_column \n" +
