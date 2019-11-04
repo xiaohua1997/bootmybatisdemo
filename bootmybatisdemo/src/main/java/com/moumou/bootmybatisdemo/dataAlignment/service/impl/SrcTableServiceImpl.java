@@ -61,7 +61,7 @@ public class SrcTableServiceImpl implements SrcTableService{
 		String sid = srcTable.getDbSid();
 		String tablename = srcTable.getTableName();
 		
-			return srcTableMapper.conditionQuerySrcTable(sys, sid, tablename);
+			return srcTableMapper.conditionQuerySrcTable(srcTable);
 		
 	}
 }
