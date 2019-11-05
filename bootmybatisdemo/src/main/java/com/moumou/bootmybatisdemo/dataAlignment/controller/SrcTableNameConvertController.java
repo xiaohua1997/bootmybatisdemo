@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTableNameConvert;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcTableNameConvertService;
 
@@ -47,6 +48,20 @@ import io.swagger.annotations.ApiOperation;
 	LOG.info("pageInfo size:"+pageInfo.getSize());
 	    return pageInfo;
 	}
+	
+	@RequestMapping(value = "/conditionquerysrcconvertpage", method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public @ResponseBody PageInfo conditionQuerySrcTableNameConvertPage(@RequestBody SrcTableNameConvert srcTableNameConvert,Model model){
+    	
+    	int pageNum = srcTableNameConvert.getCurrentPage();
+        LOG.info("条件查询分页");
+        PageHelper.startPage(pageNum,10);
+        LOG.info("pageNum:"+pageNum);
+        List<SrcTableNameConvert> srcTableNameConverts = srcTableNameConvertService.conditionQuerySrcTableNameConvert(srcTableNameConvert);
+        PageInfo<SrcTableNameConvert> pageInfo = new PageInfo<SrcTableNameConvert>(srcTableNameConverts);
+        model.addAttribute("pageInfo",pageInfo);
+        LOG.info("pageInfo size:"+pageInfo.getSize());
+        return pageInfo;
+    }
 	
 	//设置返回的请求编码（boot返回对象的编码默认：utf-8，直接返回字符串的编码是windows系统默认编码：ISO-8859-1）
 	//produces = {"application/json;charset=UTF-8"}

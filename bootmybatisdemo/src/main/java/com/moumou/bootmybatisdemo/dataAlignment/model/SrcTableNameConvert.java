@@ -2,7 +2,7 @@ package com.moumou.bootmybatisdemo.dataAlignment.model;
 
 import com.moumou.bootmybatisdemo.util.ExcelColumn;
 
-public class SrcTableNameConvert {
+public class SrcTableNameConvert extends PageNum{
 	
 	@ExcelColumn("srcTableName")
 	private String srcTableName;

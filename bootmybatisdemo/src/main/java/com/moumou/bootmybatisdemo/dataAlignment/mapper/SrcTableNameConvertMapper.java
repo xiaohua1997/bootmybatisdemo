@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTableNameConvert;
 
 @Mapper
@@ -16,6 +17,18 @@ public interface SrcTableNameConvertMapper {
     //查询
 	@Select("select * from src_tablename_convert ")
 	List<SrcTableNameConvert> querySrcTableNC();
+	
+	//条件查询
+    @Select(
+    	    "<script> SELECT * from src_tablename_convert "
+    	        + "WHERE 1=1"
+    	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
+    	        + "<if test='null!=#{srcTableName}'> and src_table_name like concat('%',#{srcTableName},'%') </if> "
+    	        + "<if test='null!=#{tgtTableName}'> and tgt_table_name like concat('%',#{tgtTableName},'%') </if> "
+    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "</script>")
+    //@ResultMap("com.assessmentTargetAssPsndocResult")
+    List<SrcTableNameConvert> conditionQuerySrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 	
 	//修改
 	@Update("UPDATE \n" +

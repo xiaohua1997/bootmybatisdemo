@@ -8,6 +8,8 @@ public interface SrcTableNameConvertService {
 	
 	List<SrcTableNameConvert> querySrcTableNameConvert();
 	
+	List<SrcTableNameConvert> conditionQuerySrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
+	
     String addSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
     
     boolean delSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
