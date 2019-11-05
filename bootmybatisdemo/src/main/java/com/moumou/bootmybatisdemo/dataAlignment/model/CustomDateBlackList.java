@@ -1,7 +1,11 @@
 package com.moumou.bootmybatisdemo.dataAlignment.model;
 
-public class CustomDateBlackList {
+import com.moumou.bootmybatisdemo.util.ExcelColumn;
+
+public class CustomDateBlackList extends PageNum{
+	@ExcelColumn("_batch_date")
 	private String _batch_date;
+	@ExcelColumn("_comment")
 	private String _comment;
 	
 	public CustomDateBlackList() {

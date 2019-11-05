@@ -59,7 +59,7 @@ public class SrcTableNameConvertServiceImpl implements SrcTableNameConvertServic
 	@Override
 	public List<SrcTableNameConvert> conditionQuerySrcTableNameConvert(SrcTableNameConvert srcTableNameConvert) {
 		
-		return null;
+		return srcTableNameConvertMapper.conditionQuerySrcTableNameConvert(srcTableNameConvert);
 	}
 
 }

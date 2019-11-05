@@ -42,7 +42,6 @@ public interface EtlColumnConvertMapper {
             "sys=#{sys} \n" +
             "WHERE \n" +
             "src_column=#{srcColumn} and \n" +
-            "tgt_column=#{tgtColumn} and \n" +
             "table_name=#{tableName} and \n" +
             "sys=#{sys}")
 	int updateEtlColumnCon(EtlColumnConvert etlColumnConvert);

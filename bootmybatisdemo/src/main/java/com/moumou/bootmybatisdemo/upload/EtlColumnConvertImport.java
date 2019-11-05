@@ -31,7 +31,7 @@ private static final Logger LOG = LoggerFactory.getLogger(EtlColumnConvertImport
 	@Autowired
 	private EtlColumnConvertService etlColumnConvertService;
 	
-	//上传 src_system表新增数据（excel）
+	//上传 表新增数据（excel）
     @RequestMapping(value = "/etlcolumnconimp", method = RequestMethod.POST,
 //            consumes = "application/json",produces = "application/json")
             consumes = "multipart/form-data", produces = {"application/json;charset=UTF-8"})
