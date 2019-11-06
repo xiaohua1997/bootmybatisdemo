@@ -1,7 +1,6 @@
 package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

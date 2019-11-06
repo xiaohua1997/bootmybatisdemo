@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
 
 @Mapper
 public interface EtlTypeConvertMapper {

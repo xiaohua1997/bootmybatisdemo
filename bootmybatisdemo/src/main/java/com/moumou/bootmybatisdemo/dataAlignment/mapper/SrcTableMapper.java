@@ -1,19 +1,14 @@
 package com.moumou.bootmybatisdemo.dataAlignment.mapper;
 
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface SrcTableMapper {

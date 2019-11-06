@@ -9,9 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
-import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 
 @Mapper
 public interface CustomDateBlackListMapper {
