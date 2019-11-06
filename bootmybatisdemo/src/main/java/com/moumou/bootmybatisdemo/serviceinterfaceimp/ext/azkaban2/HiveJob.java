@@ -7,9 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;

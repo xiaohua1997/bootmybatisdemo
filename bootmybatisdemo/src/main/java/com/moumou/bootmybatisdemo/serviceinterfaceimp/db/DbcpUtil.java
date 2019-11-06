@@ -1,6 +1,5 @@
 package com.moumou.bootmybatisdemo.serviceinterfaceimp.db;
 
-import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.SrcdbToTgtdb;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -9,9 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 
 public class DbcpUtil {
     // 声明DBCP

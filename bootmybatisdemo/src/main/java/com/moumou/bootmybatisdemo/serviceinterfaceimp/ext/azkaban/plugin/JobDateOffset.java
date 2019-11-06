@@ -3,7 +3,6 @@ package com.moumou.bootmybatisdemo.serviceinterfaceimp.ext.azkaban.plugin;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.common.StringExtension;

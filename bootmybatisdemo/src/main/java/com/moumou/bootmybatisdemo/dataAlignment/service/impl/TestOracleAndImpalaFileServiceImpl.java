@@ -18,7 +18,6 @@ public class TestOracleAndImpalaFileServiceImpl implements TestOracleAndImpalaFi
 
 	private TestOracleAndImpalaFile testOracleAndImpalaFile = new TestOracleAndImpalaFile();
 	private ScheduleJobs aScheduleJobs = new ScheduleJobs();
-	private KettleJobCreator kettleJobCreator = new KettleJobCreator();
     @Autowired
     private SrcSystemMapper srcSystemMapper;
 	@Override

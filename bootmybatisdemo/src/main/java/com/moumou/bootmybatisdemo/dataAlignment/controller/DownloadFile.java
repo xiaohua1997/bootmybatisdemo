@@ -10,18 +10,15 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.print.attribute.standard.MediaSize.JIS;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moumou.bootmybatisdemo.dataAlignment.service.FileService;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.FileToZip;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.terminal.ScheduleJobs;
-import com.moumou.bootmybatisdemo.util.JsonResult;
 
 @RestController
 @RequestMapping("/OracleAndImpala")

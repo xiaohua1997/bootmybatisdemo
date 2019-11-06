@@ -3,9 +3,7 @@ package com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.output;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.integrated.input.PoiHelper;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.Block;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.BlockSet;
-import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.SelectFields;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.condition.WhereCondition;
-import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.field.Direct;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.field.source.DirectField;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.field.source.ExpressionField;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.layer.model.field.source.SourceField;
@@ -16,7 +14,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;

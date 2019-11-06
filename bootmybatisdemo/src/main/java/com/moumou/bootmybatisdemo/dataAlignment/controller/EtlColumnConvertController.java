@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlColumnConvert;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcColumn;
 import com.moumou.bootmybatisdemo.dataAlignment.service.EtlColumnConvertService;
 
 import io.swagger.annotations.ApiOperation;

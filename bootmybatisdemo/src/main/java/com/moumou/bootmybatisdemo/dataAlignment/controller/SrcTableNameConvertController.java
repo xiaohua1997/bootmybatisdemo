@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTable;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTableNameConvert;
 import com.moumou.bootmybatisdemo.dataAlignment.service.SrcTableNameConvertService;
 

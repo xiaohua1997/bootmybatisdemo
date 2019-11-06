@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
-import com.moumou.bootmybatisdemo.dataAlignment.model.EtlColumnConvert;
 import com.moumou.bootmybatisdemo.dataAlignment.service.CustomDateBlackListService;
 import com.moumou.bootmybatisdemo.util.ExcelUtil;
 import com.moumou.bootmybatisdemo.util.JsonResult;

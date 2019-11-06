@@ -12,17 +12,14 @@ import java.net.URLDecoder;
 
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.common.StringExtension;
 
-import org.apache.log4j.chainsaw.Main;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceFieldDao;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceSystemDao;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.SourceTableDao;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.metamgr.SrcdbToTgtdb;
-import com.moumou.bootmybatisdemo.dataAlignment.mapper.SrcSystemMapper;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceTable;

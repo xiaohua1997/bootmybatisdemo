@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.DbcpUtil;
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 

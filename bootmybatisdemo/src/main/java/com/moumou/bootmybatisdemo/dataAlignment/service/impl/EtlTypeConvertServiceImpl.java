@@ -24,25 +24,6 @@ public class EtlTypeConvertServiceImpl implements EtlTypeConvertService{
 
 	@Override
 	public String updateEtlTypeConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1) {
-		String srcdbtype = etlTypeConvert.getSrcDbType();
-		String srccolumntype = etlTypeConvert.getSrcColumnType();
-		String tgtdbtype = etlTypeConvert.getTgtDbType();
-		String tgtcolumntype = etlTypeConvert.getTgtColumnType();
-		String tgtcolumnbigtype = etlTypeConvert.getTgtColumnBigType();
-		String tgtcolumnlength = etlTypeConvert.getTgtColumnLength();
-		String tgtcolumndefault = etlTypeConvert.getTgtColumnDefault();
-		String tgtcolumnformat = etlTypeConvert.getTgtColumnFormat();
-		String convertmode = etlTypeConvert.getConvertMode();
-		
-		String srcdbtype1 = etlTypeConvert1.getSrcDbType();
-		String srccolumntype1 = etlTypeConvert1.getSrcColumnType();
-		String tgtdbtype1 = etlTypeConvert1.getTgtDbType();
-		String tgtcolumntype1 = etlTypeConvert1.getTgtColumnType();
-		String tgtcolumnbigtype1 = etlTypeConvert1.getTgtColumnBigType();
-		String tgtcolumnlength1 = etlTypeConvert1.getTgtColumnLength();
-		String tgtcolumndefault1 = etlTypeConvert1.getTgtColumnDefault();
-		String tgtcolumnformat1 = etlTypeConvert1.getTgtColumnFormat();
-		String convertmode1 = etlTypeConvert1.getConvertMode();
 		
 		int i = etlTypeConvertMapper.updateEtlConvert(etlTypeConvert,etlTypeConvert1);
 		if(i==0) {

@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,10 +19,8 @@ import com.moumou.bootmybatisdemo.serviceinterfaceimp.common.StringExtension;
 import com.moumou.bootmybatisdemo.dataAlignment.model.ColumnDescInfo;
 import com.moumou.bootmybatisdemo.dataAlignment.model.SourceField;
 import com.moumou.bootmybatisdemo.dataAlignment.model.TableInfo;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.db.JdbcConnection;
-import com.moumou.bootmybatisdemo.dataAlignment.model.SourceSystem;
 
 public class MysqlToImpala {
 
