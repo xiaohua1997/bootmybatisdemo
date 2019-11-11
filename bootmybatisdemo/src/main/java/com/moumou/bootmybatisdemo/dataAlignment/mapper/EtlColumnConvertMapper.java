@@ -14,7 +14,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.EtlColumnConvert;
 public interface EtlColumnConvertMapper {
 	
 	//查询
-	@Select("select * from etl_column_convert")
+	@Select("select * from etl_column_convert order by src_column")
 	List<EtlColumnConvert> queryEtlColumnCon();
 	
 	//条件查询
@@ -25,7 +25,7 @@ public interface EtlColumnConvertMapper {
     	        + "<if test='null!=#{srcColumn}'> and src_column like concat('%',#{srcColumn},'%') </if> "
     	        + "<if test='null!=#{tgtColumn}'> and tgt_column like concat('%',#{tgtColumn},'%') </if> "
     	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
-    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "order by src_COlumn " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<EtlColumnConvert> conditionQueryEtlColumnConvert(EtlColumnConvert etlColumnConvert);

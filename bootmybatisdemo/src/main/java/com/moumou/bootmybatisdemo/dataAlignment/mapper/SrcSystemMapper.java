@@ -11,7 +11,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.SrcSystem;
 //@Repository
 public interface SrcSystemMapper {
     //查询（全量）
-    @Select("select * from src_system ")
+    @Select("select * from src_system order by sys_num")
     List<SrcSystem> queryDBS();
     
   //条件查询
@@ -20,7 +20,7 @@ public interface SrcSystemMapper {
     	        + "WHERE 1=1"
     	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
     	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
-    	        /*+ "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "*/
+    	        + "order by sys_num </if> "
     	        /*+ "LIMIT #{pageindex},#{pagenum} " */
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")

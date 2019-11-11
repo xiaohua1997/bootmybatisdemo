@@ -14,7 +14,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.SrcTableNameConvert;
 public interface SrcTableNameConvertMapper {
 	
     //查询
-	@Select("select * from src_tablename_convert ")
+	@Select("select * from src_tablename_convert order by sys,src_table_name")
 	List<SrcTableNameConvert> querySrcTableNC();
 	
 	//条件查询
@@ -24,7 +24,7 @@ public interface SrcTableNameConvertMapper {
     	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
     	        + "<if test='null!=#{srcTableName}'> and src_table_name like concat('%',#{srcTableName},'%') </if> "
     	        + "<if test='null!=#{tgtTableName}'> and tgt_table_name like concat('%',#{tgtTableName},'%') </if> "
-    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "order by sys,src_table_name " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<SrcTableNameConvert> conditionQuerySrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);

@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface SrcTableMapper {
     //查询（全量）
-    @Select("select * from src_table ")
+    @Select("select * from src_table order by sys,table_name")
     List<SrcTable> queryDBS();
     //条件查询
     @Select(
@@ -22,7 +22,7 @@ public interface SrcTableMapper {
     	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
     	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
     	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
-    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "order by sys,table_name " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<SrcTable> conditionQuerySrcTable(SrcTable srcTable);

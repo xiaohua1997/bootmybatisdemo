@@ -14,7 +14,7 @@ import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
 public interface CustomDateBlackListMapper {
 	
 	//查询
-	@Select("select * from custom_date_black_list")
+	@Select("select * from custom_date_black_list order by batch_date")
 	List<CustomDateBlackList> queryCustomDateBlackList();
 
 	//条件查询
@@ -23,7 +23,7 @@ public interface CustomDateBlackListMapper {
     	        + "WHERE 1=1"
     	        + "<if test='null!=#{_batch_date}'> and batch_date like concat('%',#{_batch_date},'%') </if> "
     	        + "<if test='null!=#{_comment}'> and comment like concat('%',#{_comment},'%') </if> "
-    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "order by batch_date " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<CustomDateBlackList> conditionCustomDateBlackList(CustomDateBlackList customDateBlackList);

@@ -14,7 +14,7 @@ import java.util.List;
 public interface SrcColumnMapper {
 
     //查询（全量）
-    @Select("select * from src_column ")
+    @Select("select * from src_column order by sys,table_name,column_name")
     List<SrcColumn> queryDBS();
 
   //条件查询
@@ -25,7 +25,7 @@ public interface SrcColumnMapper {
     	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
     	        + "<if test='null!=#{tableName}'> and table_name like concat('%',#{tableName},'%') </if> "
     	        + "<if test='null!=#{columnName}'> and column_name like concat('%',#{columnName},'%') </if> "
-    	        /*+ "LIMIT #{pageindex},#{pagenum} " */
+    	        + "order by sys,table_name,column_name " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
     List<SrcColumn> conditionQuerySrcColumn(SrcColumn srcColumn);
