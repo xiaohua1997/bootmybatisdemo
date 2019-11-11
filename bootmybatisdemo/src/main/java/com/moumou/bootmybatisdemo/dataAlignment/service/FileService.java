@@ -1,5 +1,6 @@
 package com.moumou.bootmybatisdemo.dataAlignment.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface FileService {
@@ -7,5 +8,5 @@ public interface FileService {
 	
 	String delFile(String downloadFilePath,String fileName);
 	
-	boolean downloadFile(HttpServletResponse response,String downloadFilePath,String fileName);
+	boolean downloadFile(HttpServletRequest request, HttpServletResponse response,String fileName);
 }
