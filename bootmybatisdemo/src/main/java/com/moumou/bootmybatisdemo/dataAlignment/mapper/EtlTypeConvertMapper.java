@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
+import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvertCopy;
 
 @Mapper
 public interface EtlTypeConvertMapper {
@@ -53,7 +54,7 @@ public interface EtlTypeConvertMapper {
             "tgt_column_default=#{etlTypeConvert1.getTgtColumnDefault()} and \n" +
             "tgt_column_format=#{tgtColumnFormat} and \n" +
             "convert_mode=#{etlTypeConvert1.getConvertMode()}")
-	int updateEtlConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1);
+	int updateEtlConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1,EtlTypeConvertCopy etlTypeConvertCopy);
 	
 	//添加
 	@Insert("insert into etl_type_convert(\n" +

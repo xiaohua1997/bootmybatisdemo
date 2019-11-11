@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.moumou.bootmybatisdemo.dataAlignment.mapper.EtlTypeConvertMapper;
 import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvert;
+import com.moumou.bootmybatisdemo.dataAlignment.model.EtlTypeConvertCopy;
 import com.moumou.bootmybatisdemo.dataAlignment.service.EtlTypeConvertService;
 
 @Service
@@ -25,7 +26,29 @@ public class EtlTypeConvertServiceImpl implements EtlTypeConvertService{
 	@Override
 	public String updateEtlTypeConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1) {
 		
-		int i = etlTypeConvertMapper.updateEtlConvert(etlTypeConvert,etlTypeConvert1);
+		String srcDbType1 = etlTypeConvert1.getSrcDbType();
+		String srcColumnType1 = etlTypeConvert1.getSrcColumnType();
+		String tgtDbType1 = etlTypeConvert1.getTgtDbType();
+		String tgtColumnType1 = etlTypeConvert1.getTgtColumnType();
+		String tgtColumnBigType1 = etlTypeConvert1.getTgtColumnBigType();
+		String tgtColumnLength1 = etlTypeConvert1.getTgtColumnLength();
+		String tgtColumnDefault1 = etlTypeConvert1.getTgtColumnDefault();
+		String tgtColumnFormat1 = etlTypeConvert1.getTgtColumnFormat();
+		String convertMode1 = etlTypeConvert1.getConvertMode();
+		
+		EtlTypeConvertCopy etlTypeConvertCopy = new EtlTypeConvertCopy();
+		etlTypeConvertCopy.setSrcDbType1(srcDbType1);
+		etlTypeConvertCopy.setSrcColumnType1(srcColumnType1);
+		etlTypeConvertCopy.setTgtDbType1(tgtDbType1);
+		etlTypeConvertCopy.setTgtColumnType1(tgtColumnType1);
+		etlTypeConvertCopy.setTgtColumnBigType1(tgtColumnBigType1);
+		etlTypeConvertCopy.setTgtColumnLength1(tgtColumnLength1);
+		etlTypeConvertCopy.setTgtColumnDefault1(tgtColumnDefault1);
+		etlTypeConvertCopy.setTgtColumnFormat1(tgtColumnFormat1);
+		etlTypeConvertCopy.setConvertMode1(convertMode1);
+		
+		
+		int i = etlTypeConvertMapper.updateEtlConvert(etlTypeConvert,etlTypeConvert1,etlTypeConvertCopy);
 		if(i==0) {
 			return "修改失败";
 		}else {
