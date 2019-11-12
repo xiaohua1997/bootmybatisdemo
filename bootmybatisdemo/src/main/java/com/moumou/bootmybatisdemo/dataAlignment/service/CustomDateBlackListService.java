@@ -2,18 +2,18 @@ package com.moumou.bootmybatisdemo.dataAlignment.service;
 
 import java.util.List;
 
-import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
+import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlack;
 
 public interface CustomDateBlackListService {
 	
-	List<CustomDateBlackList> queryCustomDateBlackList();
+	List<CustomDateBlack> queryCustomDateBlackList();
 	
-	List<CustomDateBlackList> conditionQueryCustomDateBlackList(CustomDateBlackList customDateBlackList);
+	List<CustomDateBlack> conditionQueryCustomDateBlackList(CustomDateBlack customDateBlack);
 	
-	String addCustomDateBlackList(CustomDateBlackList customDateBlackList);
+	String addCustomDateBlackList(CustomDateBlack customDateBlack);
 	
-	String updateCustomDateBlackList(CustomDateBlackList customDateBlackList);
+	String updateCustomDateBlackList(CustomDateBlack customDateBlack);
 	
-	Boolean delCustomDateBlackList(CustomDateBlackList customDateBlackList);
+	Boolean delCustomDateBlackList(CustomDateBlack customDateBlack);
 
 }

@@ -28,20 +28,20 @@ public interface SrcTableMapper {
     List<SrcTable> conditionQuerySrcTable(SrcTable srcTable);
     
     //修改
-    @Update("UPDATE\n" +
-            "src_table\n" +
-            "SET\n" +
-            "table_cn_name=#{tableCnName},\n" +
-            "inc_cdt=#{incCdt},\n" +
-            "if_mark=#{ifMark},\n" +
-            "table_type=#{tableType},\n" +
-            "template_code=#{templateCode},\n" +
-            "is_put_to_etldb=#{isPutToEtldb}\n" +
+    @Update("UPDATE \n" +
+            "src_table \n" +
+            "SET \n" +
+            "table_cn_name=#{tableCnName}, \n" +
+            "inc_cdt=#{incCdt}, \n" +
+            "if_mark=#{ifMark}, \n" +
+            "table_type=#{tableType}, \n" +
+            "template_code=#{templateCode}, \n" +
+            "is_put_to_etldb=#{isPutToEtldb} \n" +
             "WHERE \n" +
             "sys=#{sys} and \n" +
             "db_sid=#{dbSid} and \n" +
             "table_schema=#{tableSchema} and \n" +
-            "table_name=#{tableName}\n")
+            "table_name=#{tableName} \n")
     int uptateSrcTable(SrcTable srcTable);
 
     /*增加*/

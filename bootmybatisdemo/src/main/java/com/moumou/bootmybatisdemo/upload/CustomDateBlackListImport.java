@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
+import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlack;
 import com.moumou.bootmybatisdemo.dataAlignment.service.CustomDateBlackListService;
 import com.moumou.bootmybatisdemo.util.ExcelUtil;
 import com.moumou.bootmybatisdemo.util.JsonResult;
@@ -53,8 +53,8 @@ public class CustomDateBlackListImport {
                 		map.put("msg", "文件类型错误");
                 		return new JsonResult(map);
                 	}
-                	List<CustomDateBlackList> excelBeans = ExcelUtil.readExcel(file, CustomDateBlackList.class);
-                	for (CustomDateBlackList ep : excelBeans) {
+                	List<CustomDateBlack> excelBeans = ExcelUtil.readExcel(file, CustomDateBlack.class);
+                	for (CustomDateBlack ep : excelBeans) {
                         String stu = customDateBlackListService.addCustomDateBlackList(ep);
                         LOG.info(ep.toString());
                         if(null == stu || stu.equals("添加失败")){

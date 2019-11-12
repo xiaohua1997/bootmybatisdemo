@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlack;
 import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
 
 @Mapper
@@ -15,7 +16,7 @@ public interface CustomDateBlackListMapper {
 	
 	//查询
 	@Select("select * from custom_date_black_list order by batch_date")
-	List<CustomDateBlackList> queryCustomDateBlackList();
+	List<CustomDateBlack> queryCustomDateBlackList();
 
 	//条件查询
     @Select(
@@ -26,7 +27,7 @@ public interface CustomDateBlackListMapper {
     	        + "order by batch_date " 
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
-    List<CustomDateBlackList> conditionCustomDateBlackList(CustomDateBlackList customDateBlackList);
+    List<CustomDateBlack> conditionCustomDateBlackList(CustomDateBlack customDateBlack);
     
     //添加
   	@Insert("insert into custom_date_black_list(\n" +
@@ -37,7 +38,7 @@ public interface CustomDateBlackListMapper {
               "#{_batch_date},\n" +
               "#{_comment} \n" +
               ")")
-      int addCustomDateBlackList(CustomDateBlackList customDateBlackList);
+      int addCustomDateBlackList(CustomDateBlack customDateBlack);
   	
     //修改
     @Update("UPDATE \n" +
@@ -47,9 +48,9 @@ public interface CustomDateBlackListMapper {
             "comment=#{_comment}\n" +
             "WHERE \n" +
             "batch_date=#{_batch_date}")
-    int uptateCustomDateBlackList(CustomDateBlackList customDateBlackList);
+    int uptateCustomDateBlackList(CustomDateBlack customDateBlack);
   	
     //删除
     @Delete("delete from custom_date_black_list where batch_date=#{_batch_date} and comment=#{_comment}")
-    int delCustomDateBlackList(CustomDateBlackList customDateBlackList);
+    int delCustomDateBlackList(CustomDateBlack customDateBlack);
 }

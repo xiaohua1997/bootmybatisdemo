@@ -35,25 +35,25 @@ public interface EtlTypeConvertMapper {
 	@Update("UPDATE \n" +
             "etl_type_convert \n" +
             "SET \n" +
-            "src_db_type=#{etlTypeConvert.getSrcDbType()}, \n" +
-            "src_column_type=#{etlTypeConvert.getSrcColumnType()}, \n" +
-            "tgt_db_type=#{etlTypeConvert.getTgtDbType()}, \n" +
-            "tgt_column_type=#{etlTypeConvert.getTgtColumnType()}, \n" +
-            "tgt_column_big_type=#{etlTypeConvert.getTgtColumnBigType()}, \n" +
-            "tgt_column_length=#{etlTypeConvert.getTgtColumnLength()}, \n" +
-            "tgt_column_default=#{etlTypeConvert.getTgtColumnDefault()}, \n" +
-            "tgt_column_format=#{etlTypeConvert.getTgtColumnFormat()}, \n" +
-            "convert_mode=#{etlTypeConvert.getConvertMode()}\n" +
+            "src_db_type=#{srcDbType1}, \n" +
+            "src_column_type=#{srcColumnType1}, \n" +
+            "tgt_db_type=#{tgtDbType1}, \n" +
+            "tgt_column_type=#{tgtColumnType1}, \n" +
+            "tgt_column_big_type=#{tgtColumnBigType1}, \n" +
+            "tgt_column_length=#{tgtColumnLength1}, \n" +
+            "tgt_column_default=#{tgtColumnDefault1}, \n" +
+            "tgt_column_format=#{tgtColumnFormat1}, \n" +
+            "convert_mode=#{convertMode1} \n" +
             "WHERE \n" +
-            "src_db_type=#{etlTypeConvert1.getSrcDbType()} and \n" +
-            "src_column_type=#{etlTypeConvert1.getSrcColumnType()} and \n" +
-            "tgt_db_type=#{etlTypeConvert1.getTgtDbType()} and \n" +
-            "tgt_column_type=#{etlTypeConvert1.getTgtColumnType()} and \n" +
-            "tgt_column_big_type=#{etlTypeConvert1.getTgtColumnBigType()} and \n" +
-            "tgt_column_length=#{etlTypeConvert1.getTgtColumnLength()} and \n" +
-            "tgt_column_default=#{etlTypeConvert1.getTgtColumnDefault()} and \n" +
+            "src_db_type=#{srcDbType} and \n" +
+            "src_column_type=#{srcColumnType} and \n" +
+            "tgt_db_type=#{tgtDbType} and \n" +
+            "tgt_column_type=#{tgtColumnType} and \n" +
+            "tgt_column_big_type=#{tgtColumnBigType} and \n" +
+            "tgt_column_length=#{tgtColumnLength} and \n" +
+            "tgt_column_default=#{tgtColumnDefault} and \n" +
             "tgt_column_format=#{tgtColumnFormat} and \n" +
-            "convert_mode=#{etlTypeConvert1.getConvertMode()}")
+            "convert_mode=#{convertMode}")
 	int updateEtlConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1,EtlTypeConvertCopy etlTypeConvertCopy);
 	
 	//添加

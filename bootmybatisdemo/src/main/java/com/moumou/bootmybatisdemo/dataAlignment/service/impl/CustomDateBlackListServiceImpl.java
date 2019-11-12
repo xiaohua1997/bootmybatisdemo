@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moumou.bootmybatisdemo.dataAlignment.mapper.CustomDateBlackListMapper;
-import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
+import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlack;
 import com.moumou.bootmybatisdemo.dataAlignment.service.CustomDateBlackListService;
 
 @Service
@@ -16,21 +16,21 @@ public class CustomDateBlackListServiceImpl implements CustomDateBlackListServic
 	public CustomDateBlackListMapper customDateBlackListMapper;
 	
 	@Override
-	public List<CustomDateBlackList> queryCustomDateBlackList() {
+	public List<CustomDateBlack> queryCustomDateBlackList() {
 		
 		return customDateBlackListMapper.queryCustomDateBlackList();
 	}
 
 	@Override
-	public List<CustomDateBlackList> conditionQueryCustomDateBlackList(CustomDateBlackList customDateBlackList) {
+	public List<CustomDateBlack> conditionQueryCustomDateBlackList(CustomDateBlack customDateBlack) {
 		
-		return customDateBlackListMapper.conditionCustomDateBlackList(customDateBlackList);
+		return customDateBlackListMapper.conditionCustomDateBlackList(customDateBlack);
 	}
 
 	@Override
-	public String addCustomDateBlackList(CustomDateBlackList customDateBlackList) {
+	public String addCustomDateBlackList(CustomDateBlack customDateBlack) {
 		
-			int i = customDateBlackListMapper.addCustomDateBlackList(customDateBlackList);
+			int i = customDateBlackListMapper.addCustomDateBlackList(customDateBlack);
             System.out.println("新增:"+i);
             if(i == 0){
                 return "添加失败";
@@ -39,9 +39,9 @@ public class CustomDateBlackListServiceImpl implements CustomDateBlackListServic
 	}
 
 	@Override
-	public String updateCustomDateBlackList(CustomDateBlackList customDateBlackList) {
+	public String updateCustomDateBlackList(CustomDateBlack customDateBlack) {
 		
-		int i = customDateBlackListMapper.uptateCustomDateBlackList(customDateBlackList);
+		int i = customDateBlackListMapper.uptateCustomDateBlackList(customDateBlack);
 		if(i == 0) {
 			return "修改失败";
 		}
@@ -49,9 +49,9 @@ public class CustomDateBlackListServiceImpl implements CustomDateBlackListServic
 	}
 
 	@Override
-	public Boolean delCustomDateBlackList(CustomDateBlackList customDateBlackList) {
+	public Boolean delCustomDateBlackList(CustomDateBlack customDateBlack) {
 
-		int i = customDateBlackListMapper.delCustomDateBlackList(customDateBlackList);
+		int i = customDateBlackListMapper.delCustomDateBlackList(customDateBlack);
 		if(i==0) {
 			return false;
 		}else {
