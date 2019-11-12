@@ -20,7 +20,7 @@ public interface SrcSystemMapper {
     	        + "WHERE 1=1"
     	        + "<if test='null!=#{sys}'> and sys like concat('%',#{sys},'%') </if> "
     	        + "<if test='null!=#{dbSid}'> and db_sid like concat('%',#{dbSid},'%') </if> "
-    	        + "order by sys_num </if> "
+    	        + "order by sys_num "
     	        /*+ "LIMIT #{pageindex},#{pagenum} " */
     	        + "</script>")
     //@ResultMap("com.assessmentTargetAssPsndocResult")
