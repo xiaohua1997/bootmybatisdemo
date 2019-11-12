@@ -54,7 +54,7 @@ public interface EtlTypeConvertMapper {
             "tgt_column_default=#{tgtColumnDefault} and \n" +
             "tgt_column_format=#{tgtColumnFormat} and \n" +
             "convert_mode=#{convertMode}")
-	int updateEtlConvert(EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1,EtlTypeConvertCopy etlTypeConvertCopy);
+	int updateEtlConvert(EtlTypeConvertCopy etlTypeConvertCopy,EtlTypeConvert etlTypeConvert,EtlTypeConvert etlTypeConvert1);
 	
 	//添加
 	@Insert("insert into etl_type_convert(\n" +

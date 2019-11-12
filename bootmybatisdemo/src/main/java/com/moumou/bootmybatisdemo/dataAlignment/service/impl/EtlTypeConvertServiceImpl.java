@@ -48,7 +48,7 @@ public class EtlTypeConvertServiceImpl implements EtlTypeConvertService{
 		etlTypeConvertCopy.setConvertMode1(convertMode1);
 		
 		
-		int i = etlTypeConvertMapper.updateEtlConvert(etlTypeConvert,etlTypeConvert1,etlTypeConvertCopy);
+		int i = etlTypeConvertMapper.updateEtlConvert(etlTypeConvertCopy,etlTypeConvert,etlTypeConvert1);
 		if(i==0) {
 			return "修改失败";
 		}else {

@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 import com.moumou.bootmybatisdemo.serviceinterfaceimp.dao.CustomDateBlackListDao;
+import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlack;
 import com.moumou.bootmybatisdemo.dataAlignment.model.CustomDateBlackList;
 
 public class BatchDateBlackList {
@@ -121,8 +122,8 @@ public class BatchDateBlackList {
 	private List<String> getCustom() {
 		List<String> lstResult = new ArrayList<String>();
 		
-		for (CustomDateBlackList obj : new CustomDateBlackListDao().getRecords()) {
-			lstResult.add(obj.get_batch_date());
+		for (CustomDateBlack obj : new CustomDateBlackListDao().getRecords()) {
+			lstResult.add(obj.getBatchdate());
 		} 
 		
 		return lstResult;

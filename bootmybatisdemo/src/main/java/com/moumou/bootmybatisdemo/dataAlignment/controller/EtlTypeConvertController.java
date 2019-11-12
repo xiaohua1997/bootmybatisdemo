@@ -77,6 +77,7 @@ import io.swagger.annotations.ApiOperation;
 		  
 		  EtlTypeConvert etlTypeConvert = mode[0];
 		  EtlTypeConvert etlTypeConvert1 = mode[1];
+		  System.out.println(etlTypeConvert+"111"+etlTypeConvert1);
 		  return etlTypeConvertService.updateEtlTypeConvert(etlTypeConvert,etlTypeConvert1);
 		}
 		

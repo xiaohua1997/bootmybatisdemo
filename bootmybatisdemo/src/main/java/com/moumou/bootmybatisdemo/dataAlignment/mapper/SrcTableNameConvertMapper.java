@@ -39,7 +39,7 @@ public interface SrcTableNameConvertMapper {
             "remark=#{remark} \n" +
             "WHERE \n" +
             "src_table_name=#{srcTableName} and \n" +
-            "tgt_table_name=#{tgtTableName} and \n" +
+            /*"tgt_table_name=#{tgtTableName} and \n" +*/
             "sys=#{sys}" )
 	int updateSrcTableNameConvert(SrcTableNameConvert srcTableNameConvert);
 	
